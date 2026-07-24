@@ -1,0 +1,1492 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_49dae57787",
+      "name": "Lofi Kick",
+      "description": "",
+      "file_name": "Lofi Kick.wav",
+      "file_url": "/sound_sources/files/Lofi_Kick_67a459f8.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "kick"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient",
+          "vintage"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 296,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 78296
+      },
+      "created_at": "2026-07-11T06:55:20+00:00",
+      "updated_at": "2026-07-17T04:23:34.564Z"
+    },
+    {
+      "sample_id": "sample_2762e5417a",
+      "name": "Lofi Snare",
+      "description": "",
+      "file_name": "Lofi Snare.wav",
+      "file_url": "/sound_sources/files/Lofi_Snare_f12dfd03.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "snare"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient",
+          "vintage"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 208,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 55112
+      },
+      "created_at": "2026-07-11T10:01:55+00:00",
+      "updated_at": "2026-07-17T04:23:28.336Z"
+    },
+    {
+      "sample_id": "sample_f097435172",
+      "name": "pad bpm72",
+      "description": "",
+      "file_name": "pad bpm72.mp3",
+      "file_url": "/sound_sources/files/pad_bpm72_d9cc7796.mp3",
+      "enabled": true,
+      "target": {
+        "track_role": "texture_fx",
+        "slot": ""
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient"
+        ],
+        "energy": [
+          "静止"
+        ],
+        "rhythm": [],
+        "emotion": [
+          "深沉"
+        ]
+      },
+      "playback": {
+        "gain_db": -10.5,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 13401,
+        "format": "mp3",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 272112
+      },
+      "created_at": "2026-07-11T10:18:27+00:00",
+      "updated_at": "2026-07-11T18:25:17.417Z"
+    },
+    {
+      "sample_id": "sample_de669b6c79",
+      "name": "Lofi hihat",
+      "description": "",
+      "file_name": "lofi hihat.wav",
+      "file_url": "/sound_sources/files/lofi_hihat_79c1f9fe.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "closed_hat"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient",
+          "vintage"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": -7.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 229,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 66656
+      },
+      "created_at": "2026-07-11T12:48:02+00:00",
+      "updated_at": "2026-07-15T01:05:50.201Z"
+    },
+    {
+      "sample_id": "sample_93dcf7fc88",
+      "name": "Lofi hihat",
+      "description": "",
+      "file_name": "lofi agressive hihat.wav",
+      "file_url": "/sound_sources/files/lofi_agressive_hihat_52a8fd82.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "closed_hat"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient",
+          "vintage"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": -7.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 598,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 159370
+      },
+      "created_at": "2026-07-11T15:17:55+00:00",
+      "updated_at": "2026-07-11T15:17:55+00:00"
+    },
+    {
+      "sample_id": "sample_ac6c1b483f",
+      "name": "Lofi Kick",
+      "description": "",
+      "file_name": "lofi 流动hihat.wav",
+      "file_url": "/sound_sources/files/lofi_hihat_a61de470.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "open_hat"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient",
+          "vintage"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 750,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 198494
+      },
+      "created_at": "2026-07-12T07:22:42+00:00",
+      "updated_at": "2026-07-17T04:23:16.753Z"
+    },
+    {
+      "sample_id": "sample_3cae7c4f33",
+      "name": "阴郁Hihat",
+      "description": "",
+      "file_name": "阴郁 hihat fat.wav",
+      "file_url": "/sound_sources/files/hihat_fat_758b4fea.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "open_hat"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient",
+          "acoustic",
+          "organic",
+          "vintage"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "阴郁"
+        ]
+      },
+      "playback": {
+        "gain_db": -7.5,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 136,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 36092
+      },
+      "created_at": "2026-07-15T01:05:36+00:00",
+      "updated_at": "2026-07-15T01:05:36+00:00"
+    },
+    {
+      "sample_id": "sample_48b2ffb2fb",
+      "name": "vocal 阴郁 72",
+      "description": "",
+      "file_name": "vocal 阴郁 72.wav",
+      "file_url": "/sound_sources/files/vocal_72_c37b558a.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "texture_fx",
+        "slot": ""
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient"
+        ],
+        "energy": [
+          "静止"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard"
+        ],
+        "emotion": [
+          "阴郁"
+        ]
+      },
+      "playback": {
+        "gain_db": -15.5,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 4
+      },
+      "audio_info": {
+        "duration_ms": 3333,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 1281994
+      },
+      "created_at": "2026-07-15T03:01:27+00:00",
+      "updated_at": "2026-07-15T03:03:44.608Z"
+    },
+    {
+      "sample_id": "sample_12bb5195db",
+      "name": "原声kick",
+      "description": "",
+      "file_name": "原声kick.wav",
+      "file_url": "/sound_sources/files/kick_cc5caee9.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "kick"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "acoustic",
+          "organic"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 1500,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 397164
+      },
+      "created_at": "2026-07-17T04:19:10+00:00",
+      "updated_at": "2026-07-21T08:13:24.344Z"
+    },
+    {
+      "sample_id": "sample_6054e9f8dc",
+      "name": "原声hihat",
+      "description": "",
+      "file_name": "原声hihat.wav",
+      "file_url": "/sound_sources/files/hihat_517b2596.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "closed_hat"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "acoustic",
+          "organic"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 1714,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 453858
+      },
+      "created_at": "2026-07-17T04:19:29+00:00",
+      "updated_at": "2026-07-21T08:13:31.140Z"
+    },
+    {
+      "sample_id": "sample_d4453212d6",
+      "name": "原声kick",
+      "description": "",
+      "file_name": "原声 snare.wav",
+      "file_url": "/sound_sources/files/snare_a3e7c5a7.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "snare"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "acoustic",
+          "organic"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 2250,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 595612
+      },
+      "created_at": "2026-07-17T04:19:52+00:00",
+      "updated_at": "2026-07-21T08:13:37.624Z"
+    },
+    {
+      "sample_id": "sample_b6fe0bd3a8",
+      "name": "原声ride",
+      "description": "",
+      "file_name": "原声ride.wav",
+      "file_url": "/sound_sources/files/ride_eb0a32cd.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "ride"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "acoustic",
+          "organic"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 6000,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 1587858
+      },
+      "created_at": "2026-07-17T04:24:37+00:00",
+      "updated_at": "2026-07-21T08:13:44.857Z"
+    },
+    {
+      "sample_id": "sample_ce5bbf1029",
+      "name": "dianzi Kick",
+      "description": "",
+      "file_name": "OS_ICE_kick_loaded.wav",
+      "file_url": "/sound_sources/files/OS_ICE_kick_loaded_ad0e982f.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "kick"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "electronic"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 139,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 40848
+      },
+      "created_at": "2026-07-22T02:11:07+00:00",
+      "updated_at": "2026-07-22T02:11:07+00:00"
+    },
+    {
+      "sample_id": "sample_460f7d4dcf",
+      "name": "dianzi snare",
+      "description": "",
+      "file_name": "OS_ICE_snare_spring.wav",
+      "file_url": "/sound_sources/files/OS_ICE_snare_spring_06f998e4.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "snare"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "electronic"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 223,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 65148
+      },
+      "created_at": "2026-07-22T02:11:17+00:00",
+      "updated_at": "2026-07-22T02:13:01.886Z"
+    },
+    {
+      "sample_id": "sample_90a5ba9c15",
+      "name": "dianzi perc",
+      "description": "",
+      "file_name": "OS_ICE_perc_rim_cave.wav",
+      "file_url": "/sound_sources/files/OS_ICE_perc_rim_cave_8b2e23fe.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "perc"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "electronic"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 5558,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 1603612
+      },
+      "created_at": "2026-07-22T02:11:25+00:00",
+      "updated_at": "2026-07-22T02:13:10.915Z"
+    },
+    {
+      "sample_id": "sample_6793d88e9d",
+      "name": "dianzi hihat",
+      "description": "",
+      "file_name": "OS_ICE_hihat_dent.wav",
+      "file_url": "/sound_sources/files/OS_ICE_hihat_dent_98c02cfa.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "closed_hat"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "electronic"
+        ],
+        "energy": [
+          "静止",
+          "流动",
+          "高能"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 97,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 28658
+      },
+      "created_at": "2026-07-22T02:11:35+00:00",
+      "updated_at": "2026-07-22T02:13:24.345Z"
+    },
+    {
+      "sample_id": "sample_a3013e3cb0",
+      "name": "dianzi fx",
+      "description": "",
+      "file_name": "fx.wav",
+      "file_url": "/sound_sources/files/fx_3c927956.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "impact"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "electronic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 2571,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 742284
+      },
+      "created_at": "2026-07-22T03:26:05+00:00",
+      "updated_at": "2026-07-24T02:49:20.806Z"
+    },
+    {
+      "sample_id": "sample_9403f09a35",
+      "name": "mingzu Kick",
+      "description": "",
+      "file_name": "kick.wav",
+      "file_url": "/sound_sources/files/kick_1a1c5ff8.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "kick"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ethnic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 346,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 91668
+      },
+      "created_at": "2026-07-22T15:05:10+00:00",
+      "updated_at": "2026-07-24T02:49:10.156Z"
+    },
+    {
+      "sample_id": "sample_72722e67eb",
+      "name": "mingzu hihat",
+      "description": "",
+      "file_name": "riq_tamb hihat.wav",
+      "file_url": "/sound_sources/files/riq_tamb_hihat_fbefc1bb.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "open_hat"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ethnic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 2004,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 530472
+      },
+      "created_at": "2026-07-22T15:08:01+00:00",
+      "updated_at": "2026-07-24T02:48:40.087Z"
+    },
+    {
+      "sample_id": "sample_2b53550009",
+      "name": "mingzu snare",
+      "description": "",
+      "file_name": "snare.wav",
+      "file_url": "/sound_sources/files/snare_b23508e9.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "snare"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ethnic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 500,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 132534
+      },
+      "created_at": "2026-07-22T15:08:17+00:00",
+      "updated_at": "2026-07-24T02:48:46.491Z"
+    },
+    {
+      "sample_id": "sample_afc878ccc2",
+      "name": "mingzu fill",
+      "description": "",
+      "file_name": "finger_roll.wav",
+      "file_url": "/sound_sources/files/finger_roll_f6d4a05c.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "impact"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ethnic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 748,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 198168
+      },
+      "created_at": "2026-07-22T15:08:42+00:00",
+      "updated_at": "2026-07-24T02:49:03.168Z"
+    },
+    {
+      "sample_id": "sample_ba383ee17d",
+      "name": "mingzu fill 2",
+      "description": "",
+      "file_name": "GIO_MEP_persian_daff_wave.wav",
+      "file_url": "/sound_sources/files/GIO_MEP_persian_daff_wave_ec9fe0f9.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "perc_1"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ethnic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 1174,
+        "format": "wav",
+        "sample_rate": 44100,
+        "channels": 2,
+        "file_size": 311004
+      },
+      "created_at": "2026-07-22T15:09:03+00:00",
+      "updated_at": "2026-07-24T02:48:53.757Z"
+    },
+    {
+      "sample_id": "sample_618e356d7c",
+      "name": "dianying snare",
+      "description": "",
+      "file_name": "Snare.wav",
+      "file_url": "/sound_sources/files/Snare_43710161.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "snare"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "cinematic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 10611,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 3057876
+      },
+      "created_at": "2026-07-24T06:18:36+00:00",
+      "updated_at": "2026-07-24T06:18:36+00:00"
+    },
+    {
+      "sample_id": "sample_d26735cdf8",
+      "name": "dianying kick",
+      "description": "",
+      "file_name": "CastOneShotKick_03.wav",
+      "file_url": "/sound_sources/files/CastOneShotKick_03_bf726dd6.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "kick"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "cinematic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 5212,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 1502942
+      },
+      "created_at": "2026-07-24T06:18:49+00:00",
+      "updated_at": "2026-07-24T06:18:49+00:00"
+    },
+    {
+      "sample_id": "sample_b9c5084c6a",
+      "name": "dianying perc 1",
+      "description": "",
+      "file_name": "Perc_05.wav",
+      "file_url": "/sound_sources/files/Perc_05_92854883.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "perc_1"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "cinematic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 4577,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 1319862
+      },
+      "created_at": "2026-07-24T06:19:06+00:00",
+      "updated_at": "2026-07-24T06:19:06+00:00"
+    },
+    {
+      "sample_id": "sample_46a145344c",
+      "name": "dianying perc 2",
+      "description": "",
+      "file_name": "perc 2.wav",
+      "file_url": "/sound_sources/files/perc_2_e064650a.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "perc_2"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "cinematic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 4332,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 1249440
+      },
+      "created_at": "2026-07-24T06:19:15+00:00",
+      "updated_at": "2026-07-24T06:19:15+00:00"
+    },
+    {
+      "sample_id": "sample_87a742244f",
+      "name": "dianying perc 2",
+      "description": "",
+      "file_name": "fill.wav",
+      "file_url": "/sound_sources/files/fill_75b6e352.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "fill_hit"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "cinematic"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 593,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 172740
+      },
+      "created_at": "2026-07-24T06:19:29+00:00",
+      "updated_at": "2026-07-24T06:19:29+00:00"
+    },
+    {
+      "sample_id": "sample_bfed2208ab",
+      "name": "dianying perc",
+      "description": "",
+      "file_name": "perc 3.wav",
+      "file_url": "/sound_sources/files/perc_3_eda99d61.wav",
+      "enabled": true,
+      "target": {
+        "track_role": "drums",
+        "slot": "perc"
+      },
+      "tag_rules": {
+        "sound_direction": [
+          "ambient",
+          "vintage"
+        ],
+        "energy": [
+          "静止",
+          "高能",
+          "流动"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ],
+        "emotion": [
+          "深沉",
+          "阴郁",
+          "忧伤",
+          "平静",
+          "温暖",
+          "明亮",
+          "欢快",
+          "激昂"
+        ]
+      },
+      "playback": {
+        "gain_db": 0.0,
+        "pan": 0.0,
+        "probability": 1.0,
+        "bar": 1
+      },
+      "audio_info": {
+        "duration_ms": 507,
+        "format": "wav",
+        "sample_rate": 48000,
+        "channels": 2,
+        "file_size": 147942
+      },
+      "created_at": "2026-07-24T06:22:44+00:00",
+      "updated_at": "2026-07-24T06:22:44+00:00"
+    }
+  ]
+}
