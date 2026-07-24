@@ -71,6 +71,31 @@ class SampleImportTests(unittest.TestCase):
         self.assertTrue((Path(self.temp.name) / instrument["sample_zones"][0]["file_url"].lstrip("/")).is_file())
         self.assertEqual(instrument_library.get_instrument(instrument["id"])["name"], "Imported Piano")
 
+    def test_uncreated_analysis_job_can_be_deleted(self) -> None:
+        job = sample_import.stage_upload("folder", [("Keys_C3.wav", wav_bytes())])
+        result = sample_import.delete_uncreated_job(job["id"])
+        self.assertEqual(result["id"], job["id"])
+        self.assertIsNone(sample_import.job_by_id(job["id"]))
+        self.assertFalse((Path(self.temp.name) / "sample_import" / "jobs" / job["id"]).exists())
+
+    def test_created_instrument_job_is_displayed_and_cannot_be_deleted(self) -> None:
+        job = sample_import.stage_upload("folder", [("Keys_C3.wav", wav_bytes())])
+        result = sample_import.create_instrument(job["id"], {"name": "Created Keys", "track_role": "foundation", "category": "piano"})
+        exported = sample_import.export_jobs()["jobs"]
+        completed = next(item for item in exported if item["id"] == job["id"])
+        self.assertEqual(completed["created_instruments"], [{"id": result["instrument"]["id"], "name": "Created Keys"}])
+        with self.assertRaisesRegex(ValueError, "已经创建乐器"):
+            sample_import.delete_uncreated_job(job["id"])
+
+    def test_cleanup_removes_completed_job_after_its_instrument_is_deleted(self) -> None:
+        job = sample_import.stage_upload("folder", [("Keys_C3.wav", wav_bytes())])
+        result = sample_import.create_instrument(job["id"], {"name": "Deleted Keys", "track_role": "foundation", "category": "piano"})
+        instrument_library.delete_instrument(result["instrument"]["id"])
+        cleanup = sample_import.cleanup_orphaned_completed_jobs()
+        self.assertEqual(cleanup["job_ids"], [job["id"]])
+        self.assertGreater(cleanup["bytes_freed"], 0)
+        self.assertIsNone(sample_import.job_by_id(job["id"]))
+
     def test_rejects_unsafe_and_unsupported_files(self) -> None:
         with self.assertRaises(ValueError):
             sample_import.stage_upload("folder", [("../escape.wav", wav_bytes())])

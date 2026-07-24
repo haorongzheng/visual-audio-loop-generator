@@ -84,6 +84,74 @@ def save_job(updated: dict[str, Any]) -> dict[str, Any]:
     return updated
 
 
+def created_instruments(job: dict[str, Any]) -> list[dict[str, str]]:
+    """Return the instruments that were actually created from an import job."""
+    instrument_ids = [str(job.get("instrument_id") or "")]
+    instrument_ids.extend(str(item) for item in job.get("instrument_ids", []) if item)
+    seen: set[str] = set()
+    result: list[dict[str, str]] = []
+    for instrument_id in instrument_ids:
+        if not instrument_id or instrument_id in seen:
+            continue
+        seen.add(instrument_id)
+        instrument = get_instrument(instrument_id)
+        result.append({"id": instrument_id, "name": str((instrument or {}).get("name") or instrument_id)})
+    return result
+
+
+def _job_instrument_ids(job: dict[str, Any]) -> list[str]:
+    instrument_ids = [str(job.get("instrument_id") or "")]
+    instrument_ids.extend(str(item) for item in job.get("instrument_ids", []) if item)
+    return list(dict.fromkeys(item for item in instrument_ids if item))
+
+
+def _job_folder(job_id: str) -> Path:
+    root = JOB_DIR.resolve()
+    folder = (JOB_DIR / job_id).resolve()
+    if not folder.is_relative_to(root):
+        raise ValueError("导入任务路径无效。")
+    return folder
+
+
+def _folder_size(folder: Path) -> int:
+    return sum(item.stat().st_size for item in folder.rglob("*") if item.is_file()) if folder.exists() else 0
+
+
+def delete_uncreated_job(job_id: str) -> dict[str, Any]:
+    """Delete a staged analysis job only when it has not created any instrument."""
+    jobs = _jobs()
+    job = next((item for item in jobs if item.get("id") == job_id), None)
+    if not job:
+        raise ValueError("导入任务不存在。")
+    if job.get("status") == "completed" or job.get("instrument_id") or job.get("instrument_ids"):
+        raise ValueError("该任务已经创建乐器，不能从导入任务中删除。")
+
+    shutil.rmtree(_job_folder(job_id), ignore_errors=True)
+    _save_jobs([item for item in jobs if item.get("id") != job_id])
+    return {"id": job_id}
+
+
+def cleanup_orphaned_completed_jobs() -> dict[str, Any]:
+    """Remove old staged imports whose only created instruments were deleted."""
+    jobs = _jobs()
+    kept: list[dict[str, Any]] = []
+    deleted: list[str] = []
+    bytes_freed = 0
+    for job in jobs:
+        instrument_ids = _job_instrument_ids(job)
+        is_orphan = job.get("status") == "completed" and bool(instrument_ids) and not any(get_instrument(item) for item in instrument_ids)
+        if not is_orphan:
+            kept.append(job)
+            continue
+        folder = _job_folder(str(job.get("id") or ""))
+        bytes_freed += _folder_size(folder)
+        shutil.rmtree(folder, ignore_errors=True)
+        deleted.append(str(job["id"]))
+    if deleted:
+        _save_jobs(kept)
+    return {"job_ids": deleted, "count": len(deleted), "bytes_freed": bytes_freed}
+
+
 def stage_upload(source_type: str, files: list[tuple[str, bytes]]) -> dict[str, Any]:
     source_type = source_type if source_type in {"single_wav", "folder", "sfz", "mappingchart"} else "folder"
     if not files:
@@ -500,7 +568,7 @@ def create_instrument(job_id: str, payload: dict[str, Any]) -> dict[str, Any]:
     sources = _read(SOURCE_DB, {"sources": []})
     source = {"id": f"source_{uuid.uuid4().hex[:10]}", "name": instrument["source_info"]["library"], "type": instrument["source_info"]["type"], "license": instrument["source_info"]["license"], "author": instrument["source_info"]["author"], "url": instrument["source_info"]["url"], "created_at": now()}
     _write(SOURCE_DB, {"sources": [*sources.get("sources", []), source]})
-    job.update({"status": "completed", "processed_files": len(instrument["sample_zones"]), "instrument_id": created["id"], "completed_at": now()})
+    job.update({"status": "completed", "processed_files": len(instrument["sample_zones"]), "instrument_id": created["id"], "created_instruments": [{"id": created["id"], "name": created["name"]}], "completed_at": now()})
     save_job(job)
     return {"instrument": created, "job": job}
 
@@ -541,7 +609,7 @@ def create_vsco_instruments(job_id: str, payload: dict[str, Any]) -> dict[str, A
                     converted.unlink(missing_ok=True)
             instrument["sample_zones"].append(normalize_zone({"instrument_id": instrument["id"], "name": Path(zone_data["file_name"]).stem, "file_name": zone_data["file_name"], "file_url": f"/instruments/files/{safe_name(instrument['id'])}/{stored_name}", "mime_type": "audio/wav", "file_size": target.stat().st_size, "sample_rate": zone_data.get("sample_rate"), "channels": zone_data.get("channels"), "duration_ms": zone_data.get("duration_ms", 0), "root_midi_note": zone_data["root_midi_note"], "note_range": {"low": zone_data["low_midi_note"], "high": zone_data["high_midi_note"]}, "velocity_range": {"low": zone_data["velocity_low"], "high": zone_data["velocity_high"]}, "gain_db": zone_data.get("gain_db", 0), "round_robin_group": zone_data.get("round_robin_group", ""), "round_robin_index": zone_data.get("round_robin_index", 1), "velocity_layer": zone_data.get("velocity_layer", 1), "articulation": zone_data.get("articulation", "sustain"), "source_library": library, "enabled": True}, instrument["id"]))
         created.append(upsert_instrument(instrument))
-    job.update({"status": "completed", "processed_files": len(job.get("files", [])), "instrument_ids": [item["id"] for item in created], "completed_at": now()})
+    job.update({"status": "completed", "processed_files": len(job.get("files", [])), "instrument_ids": [item["id"] for item in created], "created_instruments": [{"id": item["id"], "name": item["name"]} for item in created], "completed_at": now()})
     save_job(job)
     return {"instruments": created, "job": job}
 
@@ -574,7 +642,12 @@ def repair_vsco_instrument_gain(instrument_id: str) -> dict[str, Any]:
 
 
 def export_jobs() -> dict[str, Any]:
-    jobs = sorted(_jobs(), key=lambda item: item.get("created_at", ""), reverse=True)
+    jobs = []
+    for job in _jobs():
+        item = {**job}
+        item["created_instruments"] = created_instruments(item)
+        jobs.append(item)
+    jobs.sort(key=lambda item: item.get("created_at", ""), reverse=True)
     return {"jobs": jobs}
 
 

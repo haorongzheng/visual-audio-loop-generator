@@ -35,6 +35,13 @@
 .import-job-list { display: grid; gap: 8px; }
 .import-job { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .import-job div { display: grid; gap: 3px; min-width: 0; }
+.import-job-state { font-weight: 700; }
+.import-job-state.is-created { color: var(--accent); }
+.import-job-state.is-analysis { color: var(--accent-2); }
+.import-job-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+.import-job-actions button, .import-job-actions .button-link { min-height: 34px; padding: 6px 10px; font-size: 12px; }
+.button-link { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); background: var(--panel); font-weight: 750; text-decoration: none; }
+.import-job-actions .danger { color: #a33326; border-color: #d8a8a0; background: #fff9f7; }
 .vsco-instrument-list { display: grid; gap: 10px; border: 1px solid var(--line); border-radius: 7px; padding: 12px; }
 .vsco-instrument-list .panel-head { padding-bottom: 4px; }
 .vsco-instrument-list .panel-head > div { display: grid; gap: 2px; }

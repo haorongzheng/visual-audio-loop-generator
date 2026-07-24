@@ -194,14 +194,31 @@ async function createInstrument() {
 }
 
 function renderJobs(jobs) {
-  $("import-jobs").innerHTML = jobs.length ? jobs.map((job) => `<article class="import-job"><div><b>${escapeHtml(job.preview?.instrument_name || job.id)}</b><span>${escapeHtml(job.preview?.format || "待分析")} · ${job.preview?.zone_count || 0} 个 Zone</span></div><div class="actions"><small>${escapeHtml(job.status)} · ${escapeHtml(job.created_at || "")}</small>${job.preview ? `<button data-open-job="${escapeHtml(job.id)}">打开预览</button>` : ""}</div></article>`).join("") : `<p class="hint">尚无导入任务。</p>`;
+  $("import-jobs").innerHTML = jobs.length ? jobs.map((job) => {
+    const created = job.created_instruments || [];
+    const createdLabel = created.length ? `已创建乐器${created.length > 1 ? ` · ${created.length} 件` : ""}：${escapeHtml(created.map((item) => item.name).join("、"))}` : "仅完成分析，尚未创建乐器";
+    const actions = job.preview ? `<button data-open-job="${escapeHtml(job.id)}">打开预览</button>` : "";
+    const manage = created.length ? `<a class="button-link" href="/admin/instruments">查看乐器</a>` : `<button class="danger" data-delete-job="${escapeHtml(job.id)}">删除分析任务</button>`;
+    return `<article class="import-job"><div><b>${escapeHtml(job.preview?.instrument_name || job.id)}</b><span>${escapeHtml(job.preview?.format || "待分析")} · ${job.preview?.zone_count || 0} 个 Zone</span><span class="import-job-state ${created.length ? "is-created" : "is-analysis"}">${createdLabel}</span></div><div class="actions"><small>${escapeHtml(job.status)} · ${escapeHtml(job.created_at || "")}</small><div class="import-job-actions">${actions}${manage}</div></div></article>`;
+  }).join("") : `<p class="hint">尚无导入任务。</p>`;
   document.querySelectorAll("[data-open-job]").forEach((button) => button.addEventListener("click", () => {
     const job = jobs.find((item) => item.id === button.dataset.openJob);
     if (job) { renderPreview(job); status(`已打开 ${job.preview.instrument_name} 的导入预览`); }
   }));
+  document.querySelectorAll("[data-delete-job]").forEach((button) => button.addEventListener("click", async () => {
+    const job = jobs.find((item) => item.id === button.dataset.deleteJob);
+    if (!job || !window.confirm(`删除“${job.preview?.instrument_name || job.id}”的分析任务及其暂存采样？`)) return;
+    try {
+      const data = await request(`/api/sample-import/jobs/${encodeURIComponent(job.id)}`, { method: "DELETE" });
+      if (activeJob?.id === job.id) activeJob = null;
+      renderJobs(data.jobs || []);
+      status("已删除未创建乐器的分析任务。");
+    } catch (error) { status(error.message, true); }
+  }));
 }
 async function loadJobs() { const data = await request("/api/sample-import/jobs"); renderJobs(data.jobs || []); }
 async function loadDefinitions() { const data = await request("/api/instruments"); definitions = data.definitions || definitions; fillCategories(); }
+function formatBytes(value) { return `${(Number(value || 0) / 1024 / 1024).toFixed(1)} MB`; }
 
 function bind() {
   document.querySelectorAll("[data-source-type]").forEach((button) => button.addEventListener("click", () => { sourceType = button.dataset.sourceType; updateSourcePicker(); }));
@@ -209,6 +226,14 @@ function bind() {
   $("create-instrument").addEventListener("click", createInstrument);
   $("track-role").addEventListener("change", () => { if (activeJob?.preview?.source === "vsco_library") updateVscoNameField(); });
   $("refresh-jobs").addEventListener("click", () => loadJobs().catch((error) => status(error.message, true)));
+  $("cleanup-deleted-jobs").addEventListener("click", async () => {
+    if (!window.confirm("清理已删除乐器对应的导入暂存文件？仍在乐器库中的乐器不会受影响。")) return;
+    try {
+      const data = await request("/api/sample-import/cleanup-deleted", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+      renderJobs(data.jobs || []);
+      status(data.cleanup.count ? `已清理 ${data.cleanup.count} 个遗留任务，释放 ${formatBytes(data.cleanup.bytes_freed)}。` : "没有发现可清理的已删除乐器暂存文件。");
+    } catch (error) { status(error.message, true); }
+  });
 }
 
 bind();

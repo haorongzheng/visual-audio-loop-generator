@@ -28,7 +28,7 @@ from .instrument_library import auto_map, delete_instrument, delete_zone, duplic
 from .music_state_schema import ImageAnnotation, coerce_annotation, standard_json as schema_standard_json
 from .mixer_config import load_mixer, save_mixer
 from .sample_library import load_samples, save_samples, upload_sample_file, upsert_sample
-from .sample_import import analyze_job as analyze_sample_import_job, analyze_vsco_job, append_vsco_file, create_instrument as create_imported_instrument, create_vsco_instruments, export_jobs as export_sample_import_jobs, job_by_id as sample_import_job_by_id, preview_audio_path as sample_import_preview_audio_path, repair_vsco_instrument_gain, stage_upload as stage_sample_import_upload, start_vsco_import
+from .sample_import import analyze_job as analyze_sample_import_job, analyze_vsco_job, append_vsco_file, cleanup_orphaned_completed_jobs, create_instrument as create_imported_instrument, create_vsco_instruments, delete_uncreated_job as delete_sample_import_job, export_jobs as export_sample_import_jobs, job_by_id as sample_import_job_by_id, preview_audio_path as sample_import_preview_audio_path, repair_vsco_instrument_gain, stage_upload as stage_sample_import_upload, start_vsco_import
 from .sound_sources import export_sound_sources, save_sound_db, upload_sound_samples, upsert_sound_sources
 
 
@@ -294,6 +294,9 @@ class LoopRequestHandler(BaseHTTPRequestHandler):
         if path == "/api/sample-import/vsco/import":
             self.handle_vsco_import()
             return
+        if path == "/api/sample-import/cleanup-deleted":
+            self.handle_sample_import_cleanup()
+            return
         if path == "/api/instruments/match":
             self.handle_instrument_match()
             return
@@ -427,8 +430,11 @@ class LoopRequestHandler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         parts = path.split("/")
         try:
+            if len(parts) == 5 and parts[:4] == ["", "api", "sample-import", "jobs"]:
+                self.send_json({"ok": True, "deleted": delete_sample_import_job(parts[4]), **export_sample_import_jobs()})
+                return
             if len(parts) == 4 and parts[:3] == ["", "api", "instruments"]:
-                self.send_json({"ok": True, "instruments": delete_instrument(parts[3])})
+                self.send_json({"ok": True, "instruments": delete_instrument(parts[3]), "import_cleanup": cleanup_orphaned_completed_jobs()})
                 return
             if len(parts) == 6 and parts[4] == "zones":
                 self.send_json({"ok": True, "instrument": delete_zone(parts[3], parts[5])})
@@ -524,6 +530,12 @@ class LoopRequestHandler(BaseHTTPRequestHandler):
             data = self.read_json_body()
             result = create_vsco_instruments(str(data.get("job_id") or ""), data)
             self.send_json({"ok": True, **result, **export_instruments()})
+        except Exception as exc:
+            self.send_json({"ok": False, "error": str(exc)}, status=400)
+
+    def handle_sample_import_cleanup(self) -> None:
+        try:
+            self.send_json({"ok": True, "cleanup": cleanup_orphaned_completed_jobs(), **export_sample_import_jobs()})
         except Exception as exc:
             self.send_json({"ok": False, "error": str(exc)}, status=400)
 
