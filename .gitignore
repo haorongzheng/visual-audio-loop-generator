@@ -11,8 +11,6 @@ output_midi_test/
 # Imported source media, local library indexes, and temporary import jobs
 sample_import/
 samples/
-sound_sources/
-instruments/
 drums/
 
 # Platform-specific optional MP3 encoder
