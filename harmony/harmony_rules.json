@@ -1,0 +1,271 @@
+[
+  {
+    "rule_id": "harmony_深沉_ambient_4",
+    "emotion": "深沉",
+    "sound_direction": "ambient",
+    "loop_length_bars": 4,
+    "chords": [
+      {
+        "bar": 1,
+        "chord": "Dm9",
+        "selected_notes": [
+          "F2",
+          "A2",
+          "C3",
+          "E3"
+        ]
+      },
+      {
+        "bar": 2,
+        "chord": "Dm9",
+        "selected_notes": [
+          "F2",
+          "A2",
+          "C3",
+          "E3"
+        ]
+      },
+      {
+        "bar": 3,
+        "chord": "Am9",
+        "selected_notes": [
+          "G2",
+          "B2",
+          "D3"
+        ]
+      },
+      {
+        "bar": 4,
+        "chord": "Am9",
+        "selected_notes": [
+          "G2",
+          "B2",
+          "D3"
+        ]
+      }
+    ],
+    "key_hint": "",
+    "voicing_style": "open",
+    "enabled": true,
+    "updated_at": "2026-07-17T03:38:12+00:00"
+  },
+  {
+    "rule_id": "harmony_阴郁_ambient_4",
+    "emotion": "阴郁",
+    "sound_direction": "ambient",
+    "loop_length_bars": 4,
+    "chords": [
+      {
+        "bar": 1,
+        "chord": "Am9",
+        "selected_notes": [
+          "A3",
+          "C4",
+          "E4",
+          "G4",
+          "B4"
+        ]
+      },
+      {
+        "bar": 2,
+        "chord": "Emin9",
+        "selected_notes": [
+          "E3",
+          "G3",
+          "B3",
+          "D4",
+          "F#4"
+        ]
+      },
+      {
+        "bar": 3,
+        "chord": "Fmaj7(#11)",
+        "selected_notes": [
+          "F3",
+          "A3",
+          "C4",
+          "E4",
+          "B4"
+        ]
+      },
+      {
+        "bar": 4,
+        "chord": "Fmaj7(#11)",
+        "selected_notes": [
+          "F3",
+          "A3",
+          "C4",
+          "E4",
+          "B4"
+        ]
+      }
+    ],
+    "key_hint": "",
+    "voicing_style": "open",
+    "enabled": true,
+    "updated_at": "2026-07-14T04:13:30+00:00"
+  },
+  {
+    "rule_id": "harmony_忧伤_ambient_4",
+    "emotion": "忧伤",
+    "sound_direction": "ambient",
+    "loop_length_bars": 4,
+    "chords": [
+      {
+        "bar": 1,
+        "chord": "Am9",
+        "selected_notes": [
+          "A3",
+          "C4",
+          "E4",
+          "G4",
+          "B4"
+        ]
+      },
+      {
+        "bar": 2,
+        "chord": "Fmaj9",
+        "selected_notes": [
+          "F3",
+          "A3",
+          "C4",
+          "E4",
+          "G4"
+        ]
+      },
+      {
+        "bar": 3,
+        "chord": "Cmaj9",
+        "selected_notes": [
+          "C3",
+          "E3",
+          "G3",
+          "B3",
+          "D4"
+        ]
+      },
+      {
+        "bar": 4,
+        "chord": "Em9",
+        "selected_notes": [
+          "E3",
+          "G3",
+          "B3",
+          "D4",
+          "F#4"
+        ]
+      }
+    ],
+    "key_hint": "",
+    "voicing_style": "open",
+    "enabled": true,
+    "updated_at": "2026-07-15T03:06:33+00:00"
+  },
+  {
+    "rule_id": "harmony_深沉_all_4",
+    "emotion": "深沉",
+    "sound_direction": "all",
+    "loop_length_bars": 4,
+    "chords": [
+      {
+        "bar": 1,
+        "chord": "Dm9",
+        "selected_notes": [
+          "A2",
+          "C3",
+          "E3",
+          "F3",
+          "A3"
+        ]
+      },
+      {
+        "bar": 2,
+        "chord": "Dm9",
+        "selected_notes": [
+          "A2",
+          "C3",
+          "E3",
+          "F3",
+          "A3"
+        ]
+      },
+      {
+        "bar": 3,
+        "chord": "Am9",
+        "selected_notes": [
+          "B2",
+          "D3",
+          "G3",
+          "B3"
+        ]
+      },
+      {
+        "bar": 4,
+        "chord": "Am9",
+        "selected_notes": [
+          "B2",
+          "D3",
+          "G3",
+          "B3"
+        ]
+      }
+    ],
+    "key_hint": "",
+    "voicing_style": "open",
+    "enabled": true,
+    "updated_at": "2026-07-17T05:06:34+00:00"
+  },
+  {
+    "rule_id": "harmony_激昂_all_4",
+    "emotion": "激昂",
+    "sound_direction": "all",
+    "loop_length_bars": 4,
+    "chords": [
+      {
+        "bar": 1,
+        "chord": "Dm9",
+        "selected_notes": [
+          "D3",
+          "F3",
+          "A3",
+          "C4",
+          "E4"
+        ]
+      },
+      {
+        "bar": 2,
+        "chord": "Am7",
+        "selected_notes": [
+          "A3",
+          "C4",
+          "E4",
+          "G4"
+        ]
+      },
+      {
+        "bar": 3,
+        "chord": "Fadd9",
+        "selected_notes": [
+          "F3",
+          "A3",
+          "C4",
+          "G4"
+        ]
+      },
+      {
+        "bar": 4,
+        "chord": "Gsus4",
+        "selected_notes": [
+          "G3",
+          "C4",
+          "D4",
+          "F4"
+        ]
+      }
+    ],
+    "key_hint": "",
+    "voicing_style": "open",
+    "enabled": true,
+    "updated_at": "2026-07-22T13:44:14+00:00"
+  }
+]

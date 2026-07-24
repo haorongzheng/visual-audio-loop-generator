@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>采样标签绑定后台</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app admin-app sample-binder">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Sample Tag Binder</p>
+          <h1>采样标签绑定后台</h1>
+          <p class="admin-subtitle">音源部分由 MIDI 调用；采样部分直接播放音频文件。</p>
+        </div>
+        <div class="actions">
+          <a class="download" id="loop-console-link" href="/">Loop 控制台</a>
+          <a class="download" href="/admin/drum-patterns">鼓点后台</a>
+          <button id="new-sample" type="button">新建</button>
+          <button class="primary" id="save-sample" type="button">保存</button>
+        </div>
+      </header>
+
+      <div class="input-mode binder-mode" role="group" aria-label="绑定类型">
+        <button class="mode active" data-kind="instrument" type="button">音源部分 · MIDI 调用</button>
+        <button class="mode" data-kind="sample" type="button">采样部分 · 直接播放音频</button>
+      </div>
+
+      <section class="binder-grid">
+        <section class="panel binder-upload">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">区域 1</p>
+              <h2 id="upload-title">上传音源文件</h2>
+            </div>
+          </div>
+          <label class="upload-button">
+            <input id="sample-file" type="file" accept=".wav,.mp3,.aiff,.aif,.flac,.ogg,audio/*" />
+            <span>选择音频文件</span>
+          </label>
+          <label class="field"><span>采样名称</span><input id="sample-name" placeholder="例如 Electronic Hard Kick" /></label>
+          <label class="field"><span>描述</span><textarea id="sample-description" rows="3"></textarea></label>
+          <div class="file-readout" id="file-readout">尚未选择文件</div>
+        </section>
+
+        <section class="panel binder-settings">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">区域 2</p>
+              <h2 id="target-title">选择 MIDI 目标</h2>
+            </div>
+          </div>
+          <div class="file-readout" id="kind-help">音源部分：采样会被 Foundation / Bass / Drums 的 MIDI 事件调用。</div>
+          <div class="two-col">
+            <label class="field"><span>轨道</span><select id="track-role"></select></label>
+            <label class="field" id="slot-field"><span>鼓槽位</span><select id="slot"></select></label>
+          </div>
+
+          <div class="binder-section">
+            <p class="eyebrow">区域 3</p>
+            <h2>选择标签</h2>
+            <div class="tag-block">
+              <span>情绪</span>
+              <div id="emotion-tags" class="choice-grid"></div>
+            </div>
+            <div class="tag-block">
+              <span>能量</span>
+              <div id="energy-tags" class="choice-grid"></div>
+            </div>
+            <div class="tag-block">
+              <span>音色方向</span>
+              <div id="sound-tags" class="choice-grid"></div>
+            </div>
+            <div class="tag-block" id="rhythm-block">
+              <span>节奏</span>
+              <div id="rhythm-tags" class="choice-grid"></div>
+            </div>
+          </div>
+
+          <div class="binder-section">
+            <p class="eyebrow">区域 4</p>
+            <h2>播放设置</h2>
+            <label class="field gain-slider">
+              <span>输出增益 <output id="gain-readout">0 dB</output></span>
+              <input id="gain-db" type="range" min="-24" max="6" step="0.5" value="0" />
+            </label>
+            <audio id="preview-player" controls preload="none"></audio>
+            <label class="field" id="insert-bar-field">
+              <span>插入小节</span>
+              <select id="insert-bar"></select>
+            </label>
+            <div class="two-col">
+              <label class="field"><span>声像</span><input id="pan" type="number" min="-1" max="1" step="0.1" value="0" /></label>
+              <label class="field"><span>触发概率</span><input id="probability" type="number" min="0" max="1" step="0.05" value="1" /></label>
+            </div>
+            <label class="switch"><input id="enabled" type="checkbox" checked /> 启用</label>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel sample-list-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Sample List</p>
+            <h2>已上传采样</h2>
+          </div>
+          <span id="status-line">就绪</span>
+        </div>
+        <div class="sample-filters">
+          <input id="search" placeholder="搜索采样名称" />
+          <select id="filter-role"></select>
+          <select id="filter-emotion"></select>
+          <select id="filter-energy"></select>
+          <select id="filter-sound"></select>
+          <select id="filter-rhythm"></select>
+        </div>
+        <div class="binder-list" id="sample-list"></div>
+      </section>
+    </main>
+    <script src="sound_sources_admin.js"></script>
+  </body>
+</html>

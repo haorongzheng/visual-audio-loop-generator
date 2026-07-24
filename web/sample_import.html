@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>采样导入中心</title>
+    <link rel="stylesheet" href="styles.css?v=20260717c" />
+  </head>
+  <body class="admin-page">
+    <main class="app sample-import-app">
+      <header class="topbar">
+        <div><p class="eyebrow">Sample Import Center</p><h1>采样导入中心</h1></div>
+        <div class="actions"><a class="download" href="/">Loop 控制台</a><a class="download" href="/admin/instruments">乐器库</a></div>
+      </header>
+
+      <section class="sample-import-layout">
+        <section class="panel import-upload-panel">
+          <div class="panel-head"><div><p class="eyebrow">Step 1</p><h2>选择采样来源</h2></div><span id="import-status">等待导入</span></div>
+          <div class="import-source-types" id="source-types">
+            <button class="choice active" data-source-type="single_wav">单个 WAV</button>
+            <button class="choice" data-source-type="sfz">SFZ 乐器</button>
+            <button class="choice" data-source-type="mappingchart">MappingChart</button>
+            <button class="choice" data-source-type="vsco_library">导入 VSCO 音源库</button>
+          </div>
+          <label class="upload-dropzone" for="import-files"><input id="import-files" type="file" accept=".wav,.flac,audio/wav,audio/flac" /><b id="import-file-label">选择一个 WAV 文件</b><span>文件名中包含 C3、F#2 等音名时会自动识别根音。</span></label>
+          <button id="analyze-import" class="primary">分析采样</button>
+          <p class="hint">支持最多 512 个文件、单个 64MB、总计 256MB。MappingChart 请选完整文件夹，包含 MappingChart.txt 与 WAV。</p>
+        </section>
+
+        <section class="panel import-preview-panel">
+          <div class="panel-head"><div><p class="eyebrow">Step 2</p><h2>导入预览</h2></div><span id="preview-count">0 个 Zone</span></div>
+          <div id="preview-summary" class="analysis-summary">选择采样后会显示格式、音域、根音和速度层。</div>
+          <div id="vsco-instrument-list" class="vsco-instrument-list hidden"></div>
+          <div class="mapping-keyboard" id="mapping-keyboard"></div>
+          <div class="zone-table-wrap import-zone-table-wrap"><table class="zone-table"><thead><tr><th>采样</th><th>根音</th><th>最低音</th><th>最高音</th><th>力度层</th><th>RR</th><th>音频信息</th><th>试听</th></tr></thead><tbody id="mapping-preview"><tr><td colspan="8" class="hint">还没有可预览的采样。</td></tr></tbody></table></div>
+        </section>
+
+        <aside class="panel import-metadata-panel">
+          <div class="panel-head"><div><p class="eyebrow">Step 3</p><h2>创建乐器</h2></div></div>
+          <div class="import-form">
+            <label class="field"><span>乐器名称</span><input id="instrument-name" placeholder="单个 SFZ 可自定义；批量创建保留各 SFZ 名称" /></label>
+            <div class="two-col"><label class="field"><span>轨道</span><select id="track-role"><option value="">选择轨道</option><option value="foundation">Foundation</option><option value="bass">Bass</option><option value="lead">Lead</option><option value="texture">Texture</option></select></label><label class="field"><span>分类</span><select id="instrument-category"></select></label></div>
+            <label class="field"><span>音源库名称</span><input id="source-library" placeholder="例如 My Piano Library" /></label>
+            <div class="two-col"><label class="field"><span>授权信息</span><input id="source-license" placeholder="例如 CC0 / 已获授权" /></label><label class="field"><span>作者</span><input id="source-author" /></label></div>
+            <label class="field"><span>来源链接</span><input id="source-url" type="url" placeholder="https://" /></label>
+            <label class="field"><span>优先级</span><input id="instrument-priority" type="number" min="0" max="999" value="100" /></label>
+            <label class="switch"><input id="enable-after-import" type="checkbox" /> 创建后启用</label>
+          </div>
+          <button class="primary" id="create-instrument" disabled>创建乐器并进入乐器库</button>
+          <p class="hint">导入不会修改鼓机、和弦或 Foundation Pattern。创建后可在乐器库继续微调 Zone。</p>
+        </aside>
+      </section>
+
+      <section class="panel import-history-panel">
+        <div class="panel-head"><div><p class="eyebrow">History</p><h2>导入任务</h2></div><button id="refresh-jobs">刷新</button></div>
+        <div id="import-jobs" class="import-job-list"><p class="hint">尚无导入任务。</p></div>
+      </section>
+    </main>
+    <script src="sample_import.js?v=20260717d"></script>
+  </body>
+</html>

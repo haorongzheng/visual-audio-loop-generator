@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drum Pattern Admin</title>
+    <script>
+      if (location.protocol === "file:") {
+        location.replace("http://127.0.0.1:8766/admin/drum-patterns");
+      }
+    </script>
+    <link rel="stylesheet" href="/admin/styles.css" />
+  </head>
+  <body>
+    <main class="app drum-pattern-admin">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Drum Pattern Admin</p>
+          <h1>鼓点位置编辑后台</h1>
+          <p class="admin-subtitle">这里只编辑 Drums Track 的 MIDI 触发位置；鼓音色由音源/采样后台匹配。</p>
+        </div>
+        <div class="actions">
+          <a class="download" href="/">Loop 控制台</a>
+          <a class="download" href="/admin/samples">音源/采样后台</a>
+          <button id="duplicate-pattern" type="button">Duplicate</button>
+          <button id="reset-pattern" type="button">Reset</button>
+          <button class="primary" id="save-pattern" type="button">Save</button>
+        </div>
+      </header>
+
+      <div class="current-rule" id="current-pattern">Current Drum Pattern: All / 流动 / Groove</div>
+
+      <section class="drum-pattern-layout">
+        <aside class="panel drum-pattern-tags">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Tags Selector</p>
+              <h2>标签组合</h2>
+            </div>
+          </div>
+          <div class="tag-block">
+            <span>Sound Direction</span>
+            <div id="sound-tags" class="choice-grid"></div>
+          </div>
+          <div class="tag-block">
+            <span>Energy</span>
+            <div id="energy-tags" class="choice-grid"></div>
+          </div>
+          <div class="tag-block">
+            <span>Rhythm</span>
+            <div id="rhythm-tags" class="choice-grid"></div>
+          </div>
+          <div class="tag-block">
+            <span>Loop Length</span>
+            <div class="compact-length">
+              <label><input type="radio" name="pattern-bars" value="4" checked />4 bars</label>
+              <label><input type="radio" name="pattern-bars" value="8" />8 bars</label>
+            </div>
+          </div>
+        </aside>
+
+        <section class="panel sequencer-panel">
+          <div class="sequencer-toolbar">
+            <div>
+              <p class="eyebrow">Step Sequencer</p>
+              <h2>鼓机网格</h2>
+            </div>
+            <div class="sequencer-actions">
+              <button class="primary" id="grid-play-all" type="button">播放全部</button>
+              <button id="grid-stop" type="button">停止</button>
+              <label class="field compact-field">
+                <span>Grid Resolution</span>
+                <select id="grid-resolution"></select>
+              </label>
+            </div>
+          </div>
+          <div class="sequencer-scroll" id="sequencer"></div>
+        </section>
+
+        <aside class="panel event-editor">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">事件编辑器</p>
+              <h2>事件参数</h2>
+            </div>
+          </div>
+          <div id="event-empty" class="file-readout">点击一个鼓点格子开始编辑。</div>
+          <div id="event-form" class="event-form hidden">
+            <div class="two-col">
+              <label class="field"><span>鼓件</span><input id="event-slot" disabled /></label>
+              <label class="field"><span>小节</span><input id="event-bar" type="number" min="1" max="8" /></label>
+            </div>
+            <div class="two-col">
+              <label class="field"><span>步序</span><input id="event-step" type="number" min="1" /></label>
+              <label class="field"><span>网格</span><select id="event-grid"></select></label>
+            </div>
+            <label class="field gain-slider">
+              <span>力度 <output id="velocity-readout">96</output></span>
+              <input id="event-velocity" type="range" min="1" max="127" value="96" />
+            </label>
+            <label class="field gain-slider">
+              <span>触发概率 <output id="probability-readout">1.00</output></span>
+              <input id="event-probability" type="range" min="0" max="1" step="0.05" value="1" />
+            </label>
+            <div class="two-col">
+              <label class="field"><span>微时值</span><input id="event-micro" type="number" min="-20" max="20" value="0" /></label>
+              <label class="field"><span>时长</span><input id="event-duration" type="number" min="1" max="960" value="80" /></label>
+            </div>
+            <label class="switch"><input id="event-enabled" type="checkbox" checked /> 启用</label>
+            <div class="event-actions">
+              <button id="delete-event" type="button">删除鼓点</button>
+              <button id="duplicate-event" type="button">复制鼓点</button>
+              <button id="apply-similar" type="button">应用到相同鼓点</button>
+              <button id="close-event" type="button">关闭</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="panel pattern-preview-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Pattern List / Preview</p>
+            <h2>试听与列表</h2>
+          </div>
+          <span id="status-line">就绪</span>
+        </div>
+        <div class="preview-controls">
+          <label class="field compact-field"><span>BPM</span><input id="preview-bpm" type="number" min="40" max="220" value="98" /></label>
+          <button id="preview-play" type="button">Play</button>
+          <button id="preview-stop" type="button">Stop</button>
+          <label class="switch"><input id="preview-loop" type="checkbox" checked /> Loop</label>
+          <label class="switch"><input id="preview-metronome" type="checkbox" /> Metronome</label>
+          <label class="field gain-slider compact-volume"><span>Volume</span><input id="preview-volume" type="range" min="0" max="1" step="0.05" value="0.8" /></label>
+          <button id="export-patterns" type="button">Export JSON</button>
+          <label class="download import-button">Import JSON<input id="import-patterns" type="file" accept="application/json,.json" /></label>
+        </div>
+        <div class="pattern-list" id="pattern-list"></div>
+      </section>
+    </main>
+    <script src="/admin/drum_patterns_admin.js?v=20260712-bar-sync"></script>
+  </body>
+</html>

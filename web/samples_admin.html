@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample Library</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="app admin-app">
+      <header class="topbar">
+        <div>
+          <p class="kicker">Sample Library</p>
+          <h1>采样管理</h1>
+        </div>
+        <div class="transport">
+          <a class="download" id="loop-console-link" href="/">Loop 控制台</a>
+          <a class="download" id="drum-source-link" href="/admin/sound-sources">全音色采样后台</a>
+          <button class="primary" id="save-sample">保存配置</button>
+        </div>
+      </header>
+
+      <section class="admin-workspace">
+        <aside class="controls sample-sidebar">
+          <div class="upload-row">
+            <label class="upload-button">
+              <input id="sample-file" type="file" accept=".wav,.mp3,.aiff,.aif,.flac,.ogg,audio/*" />
+              <span>Upload Sample</span>
+            </label>
+            <button type="button" id="new-sample">新建</button>
+          </div>
+          <div class="field">
+            <span>Sample 列表</span>
+            <input id="sample-search" placeholder="搜索名称或标签" />
+          </div>
+          <div class="sample-list" id="sample-list"></div>
+        </aside>
+
+        <section class="panel sample-editor">
+          <div class="editor-head">
+            <div>
+              <span class="meter-label">当前 Sample</span>
+              <strong id="editor-title">未选择</strong>
+            </div>
+            <div class="editor-actions">
+              <button type="button" id="preview-sample">试听</button>
+              <button type="button" id="delete-sample">删除</button>
+            </div>
+          </div>
+
+          <audio id="sample-player" controls preload="none"></audio>
+          <div class="admin-note">
+            真实鼓音源：上传鼓采样后选择 drum_one_shot，并在名称或文件名里包含 kick、snare、hat、open hat 或 perc。
+          </div>
+
+          <section class="editor-grid">
+            <div class="editor-section">
+              <h2>Basic Info</h2>
+              <label class="field"><span>Name</span><input id="name" /></label>
+              <label class="field"><span>Description</span><textarea id="description"></textarea></label>
+              <label class="check-row"><input id="enabled" type="checkbox" />启用</label>
+              <div class="two-col">
+                <label class="field"><span>Sample Type</span><select id="sample-type"></select></label>
+                <label class="field"><span>Playback Type</span><select id="playback-type"></select></label>
+              </div>
+              <label class="field"><span>Priority</span><input id="priority" type="number" min="0" max="999" /></label>
+            </div>
+
+            <div class="editor-section">
+              <h2>Audio File</h2>
+              <label class="field"><span>File URL</span><input id="file-url" /></label>
+              <div class="two-col">
+                <label class="field"><span>Duration</span><input id="duration" type="number" step="0.001" /></label>
+                <label class="field"><span>BPM</span><input id="bpm-input" type="number" /></label>
+              </div>
+              <div class="two-col">
+                <label class="field"><span>Key</span><input id="key-input" /></label>
+                <label class="field"><span>Root Note</span><input id="root-note" /></label>
+              </div>
+              <div class="two-col">
+                <label class="field"><span>Length Bars</span><input id="length-bars" type="number" min="1" /></label>
+                <label class="check-row inline-check"><input id="is-loop" type="checkbox" />Is Loop</label>
+              </div>
+            </div>
+          </section>
+
+          <section class="editor-section full">
+            <h2>Music State Binding</h2>
+            <fieldset class="segmented admin-tags"><legend>Emotion</legend><div id="emotion-tags"></div></fieldset>
+            <fieldset class="segmented admin-tags"><legend>Energy</legend><div id="energy-tags"></div></fieldset>
+            <fieldset class="segmented admin-tags"><legend>Sound Direction</legend><div id="sound-tags"></div></fieldset>
+            <fieldset class="segmented admin-tags rhythm"><legend>Rhythm</legend><div id="rhythm-tags"></div></fieldset>
+          </section>
+
+          <section class="editor-grid">
+            <div class="editor-section">
+              <h2>Trigger Rule</h2>
+              <label class="field"><span>Trigger Mode</span><select id="trigger-mode"></select></label>
+              <div class="two-col">
+                <label class="field"><span>Bar</span><input id="trigger-bar" type="number" min="1" /></label>
+                <label class="field"><span>Step</span><input id="trigger-step" type="number" min="0" max="15" /></label>
+              </div>
+              <div class="two-col">
+                <label class="field"><span>Probability</span><input id="probability" type="number" min="0" max="1" step="0.01" /></label>
+                <label class="field"><span>Max Uses</span><input id="max-uses" type="number" min="1" /></label>
+              </div>
+            </div>
+
+            <div class="editor-section">
+              <h2>Mix / Sample</h2>
+              <div class="two-col">
+                <label class="field"><span>Gain dB</span><input id="gain-db" type="number" step="0.1" /></label>
+                <label class="field"><span>Pan</span><input id="pan" type="number" min="-1" max="1" step="0.01" /></label>
+              </div>
+              <div class="two-col">
+                <label class="field"><span>Fade In ms</span><input id="fade-in" type="number" min="0" /></label>
+                <label class="field"><span>Fade Out ms</span><input id="fade-out" type="number" min="0" /></label>
+              </div>
+              <div class="two-col">
+                <label class="field"><span>Reverb</span><select id="reverb"></select></label>
+                <label class="field"><span>Delay</span><select id="delay"></select></label>
+              </div>
+              <div class="two-col">
+                <label class="field"><span>Filter</span><select id="filter"></select></label>
+                <label class="check-row inline-check"><input id="sidechain" type="checkbox" />Sidechain</label>
+              </div>
+            </div>
+          </section>
+
+          <pre id="admin-json">{}</pre>
+          <div class="output-actions">
+            <span id="admin-status">待操作</span>
+            <button class="primary" type="button" id="save-sample-bottom">保存配置</button>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="samples_admin.js"></script>
+  </body>
+</html>

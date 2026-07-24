@@ -1,0 +1,27 @@
+# macOS and Python cache
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Generated loop exports
+output_audio/
+output_midi/
+output_midi_test/
+
+# Imported source media, local library indexes, and temporary import jobs
+sample_import/
+samples/
+sound_sources/
+instruments/
+drums/
+
+# Platform-specific optional MP3 encoder
+.vendor/
+
+# Uploaded working files from the Foundation MIDI admin
+data/foundation-patterns/temp/
+
+# Local editor and runtime files
+.env
+.env.*
+*.log

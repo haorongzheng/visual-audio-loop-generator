@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foundation MIDI 模板库</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="app foundation-pattern-app">
+      <header class="topbar">
+        <div><p class="eyebrow">Foundation MIDI Pattern Library</p><h1>Foundation MIDI 模板库</h1></div>
+        <div class="actions"><a class="download" href="/">Loop 控制台</a><span id="status-line">就绪</span></div>
+      </header>
+
+      <section class="foundation-pattern-layout">
+        <section class="panel pattern-upload-panel">
+          <div class="panel-head"><div><p class="eyebrow">Upload MIDI</p><h2>上传录制 MIDI</h2></div></div>
+          <label class="upload-button"><input id="midi-file" type="file" accept=".mid,.midi,audio/midi" /><span>选择 MIDI 文件</span></label>
+          <div class="file-readout" id="upload-readout">支持 .mid / .midi，最多 12MB</div>
+          <button class="primary" id="analyze-midi" type="button">分析 MIDI</button>
+        </section>
+
+        <section class="panel pattern-analysis-panel">
+          <div class="panel-head"><div><p class="eyebrow">MIDI Analysis</p><h2>MIDI 分析</h2></div></div>
+          <div id="analysis-summary" class="analysis-summary">上传后显示 PPQ、长度、音域与轨道。</div>
+          <div id="track-selection" class="track-selection"></div>
+        </section>
+
+        <section class="panel pattern-metadata-panel">
+          <div class="panel-head"><div><p class="eyebrow">Pattern Metadata</p><h2>模板资料</h2></div><button class="primary" id="save-pattern" type="button">保存到模板库</button></div>
+          <div class="two-col"><label class="field"><span>模板名称</span><input id="pattern-name" placeholder="例如 Vintage Rhodes Flow 01" /></label><label class="field"><span>版本</span><input id="pattern-version" value="1.0.0" /></label></div>
+          <label class="field"><span>描述</span><textarea id="pattern-description" rows="2"></textarea></label>
+          <div class="four-col"><label class="field"><span>循环长度</span><select id="pattern-bars"><option value="4">4 小节</option><option value="8">8 小节</option></select></label><label class="field"><span>源调根音</span><input id="source-key-root" value="C" maxlength="2" /></label><label class="field"><span>源调式</span><select id="source-mode"><option value="major">major</option><option value="minor">minor</option><option value="modal">modal</option><option value="chromatic">chromatic</option><option value="unknown">unknown</option></select></label><label class="field"><span>优先级</span><input id="pattern-priority" type="number" min="0" max="999" value="100" /></label></div>
+          <section class="source-chords-editor"><span>Source Chords</span><div id="source-chord-inputs" class="source-chord-inputs"></div></section>
+          <label class="switch"><input id="pattern-enabled" type="checkbox" checked /> 启用该模板</label>
+          <div class="tag-sections">
+            <div class="tag-block"><span>情绪</span><div class="choice-grid" id="tags-emotion"></div></div>
+            <div class="tag-block"><span>能量</span><div class="choice-grid" id="tags-energy"></div></div>
+            <div class="tag-block"><span>音色方向</span><div class="choice-grid" id="tags-sound_direction"></div></div>
+            <div class="tag-block"><span>节奏</span><div class="choice-grid" id="tags-rhythm"></div></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel foundation-pattern-library">
+        <div class="panel-head"><div><p class="eyebrow">Pattern Library</p><h2>已保存模板</h2></div><input id="pattern-search" placeholder="搜索模板名称" /></div>
+        <label class="field"><span>适配试听目标和弦</span><input id="preview-target-chords" value="Dm9, Gm9, Cmaj9, A7sus4" /></label>
+        <div id="pattern-list" class="foundation-pattern-list"></div>
+      </section>
+    </main>
+    <script src="foundation_patterns_admin.js"></script>
+  </body>
+</html>

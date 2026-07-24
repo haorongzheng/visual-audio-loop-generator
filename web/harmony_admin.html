@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>和弦规则后台</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app admin-app harmony-admin">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Harmony Admin</p>
+          <h1>和弦规则后台</h1>
+          <p class="admin-subtitle">每个情绪固定一条和弦进行，音色方向不会改变和弦。</p>
+        </div>
+        <div class="actions">
+          <a class="download" id="loop-link" href="/">Loop 控制台</a>
+          <button id="preview-progression" type="button">试听整条</button>
+          <button id="reset-rule" type="button">恢复默认</button>
+          <button id="export-rules" type="button">导出</button>
+          <button id="import-rules" type="button">导入</button>
+          <button class="primary" id="save-rule" type="button">保存</button>
+          <input id="import-file" type="file" accept=".json,application/json" hidden />
+        </div>
+      </header>
+
+      <div class="current-rule" id="current-rule">当前和弦规则：欢快</div>
+
+      <section class="harmony-layout">
+        <aside class="panel harmony-sidebar">
+          <div>
+            <p class="eyebrow">Emotion</p>
+            <div class="choice-grid" id="emotion-options"></div>
+          </div>
+        </aside>
+
+        <section class="panel harmony-editor">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Chord Editor</p>
+              <h2>和弦编辑</h2>
+            </div>
+            <fieldset class="length compact-length">
+              <label><input type="radio" name="harmony-bars" value="4" checked />4 bars</label>
+              <label><input type="radio" name="harmony-bars" value="8" />8 bars</label>
+            </fieldset>
+          </div>
+          <div class="chord-grid" id="chord-grid"></div>
+        </section>
+
+        <aside class="panel harmony-preview">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Preview</p>
+              <h2>试听设置</h2>
+            </div>
+          </div>
+          <label class="field"><span>Preview BPM</span><input id="preview-bpm" type="number" min="40" max="220" value="96" /></label>
+          <label class="field"><span>Foundation MIDI 模板</span><select id="foundation-pattern-select"><option value="">未选择上传模板</option></select></label>
+          <div class="file-readout" id="foundation-pattern-range">选择模板后，各 Bar 会显示录制 MIDI 的具体音。</div>
+          <label class="field"><span>Voicing Style</span><select id="voicing-style"></select></label>
+          <label class="switch"><input id="enabled" type="checkbox" checked /> 启用这条规则</label>
+          <div class="file-readout" id="status-line">就绪</div>
+        </aside>
+      </section>
+
+      <section class="panel harmony-list-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Harmony Rule List</p>
+            <h2>已保存规则</h2>
+          </div>
+        </div>
+        <div class="harmony-list" id="rule-list"></div>
+      </section>
+    </main>
+    <script src="harmony_admin.js"></script>
+  </body>
+</html>

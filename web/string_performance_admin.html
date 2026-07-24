@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>弦乐演奏模式</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body { max-width: 1240px; margin: 0 auto; padding: 28px; }
+      .mode-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; margin: 18px 0; }
+      .mode-list button { min-height: 72px; text-align: left; }
+      .mode-list button.active { background: #18362e; color: #fff; }
+      .editor { border: 1px solid #d5dfda; border-radius: 8px; padding: 18px; }
+      .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+      .tags, .event-row, .actions { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+      .tags label { display: inline-flex; gap: 5px; align-items: center; }
+      .event-row { border-top: 1px solid #e2eae6; padding: 12px 0; }
+      .event-row input { width: auto; min-width: 70px; }
+      .event-row .degrees { min-width: 220px; flex: 1; }
+      .actions { margin-top: 18px; }
+      .preview { margin-top: 18px; padding: 12px; background: #edf5f1; border-radius: 6px; white-space: pre-wrap; }
+      @media (max-width: 760px) { body { padding: 16px; } .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <div><p class="kicker">Foundation</p><h1>弦乐演奏模式</h1><p class="hint">只作用于弦乐、弦乐合奏、小提琴组和大提琴组的 Foundation 乐器。</p></div>
+      <a class="download" href="/">返回 Loop 控制台</a>
+    </header>
+    <section class="mode-list" id="mode-list"></section>
+    <section class="editor" id="editor"></section>
+    <section class="actions">
+      <button class="primary" id="save">保存全部模式</button>
+      <button id="reset">恢复默认</button>
+      <span class="hint" id="status"></span>
+    </section>
+    <section class="preview" id="preview">选择一个模式后可编辑每个和弦事件。长音模式会在每个和弦变化处换和弦，并保持近整小节的延音。</section>
+    <script src="/admin/string_performance_admin.js"></script>
+  </body>
+</html>

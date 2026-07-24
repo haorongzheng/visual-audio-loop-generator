@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drum Source Admin</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page drum-source-page">
+    <main class="app drum-admin-app">
+      <header class="topbar">
+        <div>
+          <p class="kicker">Drum Source Admin</p>
+          <h1>鼓音源后台</h1>
+          <p class="admin-subtitle">Upload and map custom drum samples to Music State tags.</p>
+        </div>
+        <div class="transport">
+          <a class="download" href="/">Loop 控制台</a>
+          <a class="download" href="/admin/index.html">采样后台</a>
+          <label class="upload-button">
+            <input id="drum-upload-top" type="file" multiple accept=".wav,.mp3,.aiff,.aif,.flac,.ogg,audio/*" />
+            <span>Upload Sample</span>
+          </label>
+          <button class="primary" id="save-kit">Save Kit</button>
+          <button id="duplicate-kit">Duplicate Kit</button>
+          <button id="preview-kit">Preview Kit</button>
+          <button id="export-kit">Export Config</button>
+          <label class="upload-button secondary-upload">
+            <input id="import-kit" type="file" accept=".json,application/json" />
+            <span>Import Config</span>
+          </label>
+        </div>
+      </header>
+
+      <section class="kit-path">
+        <span>Current Kit Mapping</span>
+        <strong id="current-kit-path">Electronic / 流动 / Groove</strong>
+        <em id="coverage-label">Coverage 0%</em>
+      </section>
+
+      <section class="drum-admin-layout">
+        <aside class="controls drum-filter-panel">
+          <fieldset class="segmented admin-tags"><legend>Sound Direction / 声音方向</legend><div id="drum-sound-options"></div></fieldset>
+          <fieldset class="segmented admin-tags"><legend>Energy / 能量</legend><div id="drum-energy-options"></div></fieldset>
+          <fieldset class="segmented admin-tags rhythm"><legend>Rhythm / 鼓组规则</legend><div id="drum-rhythm-options"></div></fieldset>
+          <section class="coverage-box">
+            <h2>Kit Coverage</h2>
+            <div id="slot-coverage"></div>
+            <div id="missing-slots"></div>
+          </section>
+        </aside>
+
+        <section class="panel drum-slot-panel">
+          <div class="section-title">
+            <h2>Drum Slot Grid</h2>
+            <span id="slot-count">0 Slots</span>
+          </div>
+          <div class="drum-slot-grid" id="drum-slot-grid"></div>
+        </section>
+
+        <aside class="panel drum-editor-panel">
+          <div class="section-title">
+            <h2>Slot Editor</h2>
+            <span id="selected-slot-label">Kick</span>
+          </div>
+
+          <section class="editor-section compact-section">
+            <h2>Basic Info</h2>
+            <label class="field"><span>Slot</span><input id="slot-label" /></label>
+            <label class="field"><span>MIDI Note</span><input id="slot-midi-note" type="number" min="0" max="127" /></label>
+            <label class="check-row"><input id="slot-enabled" type="checkbox" />Enabled</label>
+            <label class="field"><span>Round Robin</span><select id="slot-round-robin"></select></label>
+            <label class="field"><span>Choke Group</span><input id="slot-choke-group" /></label>
+            <label class="field"><span>Description</span><textarea id="slot-description"></textarea></label>
+          </section>
+
+          <section class="editor-section compact-section">
+            <h2>Upload</h2>
+            <label class="drop-upload">
+              <input id="slot-upload" type="file" multiple accept=".wav,.mp3,.aiff,.aif,.flac,.ogg,audio/*" />
+              <span id="slot-upload-label">Upload Kick Sample</span>
+            </label>
+          </section>
+
+          <section class="editor-section compact-section">
+            <h2>Sample Variations</h2>
+            <div class="variation-list" id="variation-list"></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="panel drum-preview-panel">
+        <div class="section-title">
+          <h2>Preview Current Drum Kit</h2>
+          <span id="drum-admin-status">待操作</span>
+        </div>
+        <div class="preview-buttons">
+          <button data-preview-slot="kick">Play Kick</button>
+          <button data-preview-slot="snare">Play Snare</button>
+          <button data-preview-slot="closed_hat">Play Hat</button>
+          <button id="play-pattern">Play Full Pattern</button>
+          <button id="stop-preview">Stop</button>
+        </div>
+        <audio id="drum-preview-player" controls preload="none"></audio>
+        <pre id="drum-kit-json">{}</pre>
+      </section>
+    </main>
+    <script src="drum_sources_admin.js"></script>
+  </body>
+</html>

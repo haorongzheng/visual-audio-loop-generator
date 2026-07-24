@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>吉他演奏模式</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body { max-width: 1320px; margin: 0 auto; padding: 28px; }
+      .mode-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 10px; margin: 18px 0; }
+      .mode-list button { min-height: 66px; text-align: left; }
+      .mode-list button.active { background: #18362e; color: #fff; }
+      .editor-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+      .tag-row, .event-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      .tag-row label { display: inline-flex; gap: 5px; align-items: center; }
+      .event-row input, .event-row select { width: auto; min-width: 92px; }
+      .event-row input[type="number"] { min-width: 62px; width: 78px; }
+      .editor-card { border: 1px solid #d5dfda; padding: 18px; margin-top: 16px; border-radius: 8px; }
+      .actions { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+      .preview { padding: 12px; background: #edf5f1; border-radius: 6px; white-space: pre-wrap; }
+      @media (max-width: 760px) { body { padding: 16px; } .editor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <div><p class="kicker">Foundation</p><h1>吉他单音演奏模式</h1><p class="hint">只作用于明确设置为 Nylon Guitar / Electric Guitar Engine 的 Foundation 乐器。</p></div>
+      <a class="download" href="/">返回 Loop 控制台</a>
+    </header>
+    <section class="mode-list" id="mode-list"></section>
+    <section class="editor-card" id="editor"></section>
+    <section class="actions">
+      <button class="primary" id="save">保存全部模式</button>
+      <button id="reset">恢复默认</button>
+      <button id="preview">试听当前 Variant</button>
+      <span class="hint" id="status"></span>
+    </section>
+    <section class="editor-grid">
+      <label class="field"><span>试听吉他</span><select id="preview-guitar-type"><option value="nylon">Nylon Guitar</option><option value="electric">Electric Guitar</option></select></label>
+      <label class="field"><span>BPM</span><input id="preview-bpm" type="number" min="40" max="220" value="100" /></label>
+      <label class="field"><span>能量</span><select id="preview-energy"><option value="静止">静止</option><option value="高能">高能</option><option value="流动" selected>流动</option></select></label>
+      <label class="field"><span>音色方向</span><select id="preview-sound"><option value="ambient" selected>ambient</option><option value="organic">organic</option><option value="ethnic">ethnic</option><option value="cinematic">cinematic</option><option value="electronic">electronic</option></select></label>
+    </section>
+    <section class="preview" id="preview-result">选择模式后可预览：Cmaj7 · Am7 · Fmaj7 · G7。</section>
+    <script src="/admin/guitar_performance_modes_admin.js"></script>
+  </body>
+</html>

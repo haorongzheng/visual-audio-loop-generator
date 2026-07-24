@@ -1,0 +1,19 @@
+[
+  {
+    "image_id": "sunlit_city",
+    "emotion": "hopeful",
+    "energy": "high",
+    "sound_direction": "electronic",
+    "rhythm": "four_on_floor",
+    "loop_length": 8
+  },
+  {
+    "image_id": "quiet_room",
+    "emotion": "calm",
+    "energy": "low",
+    "sound_direction": "ambient",
+    "rhythm": "swing",
+    "loop_length": 4
+  }
+]
+

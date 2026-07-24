@@ -1,0 +1,18 @@
+{
+  "Foundation": {
+    "gain_db": -11.0,
+    "pan": 0.0
+  },
+  "Bass": {
+    "gain_db": -9.0,
+    "pan": 0.0
+  },
+  "Drums": {
+    "gain_db": -10.5,
+    "pan": 0.0
+  },
+  "Sample": {
+    "gain_db": 0.0,
+    "pan": 0.0
+  }
+}

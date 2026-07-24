@@ -1,0 +1,22 @@
+{
+  "delay": {
+    "enabled": false,
+    "mix": 0.21,
+    "beats": 0.75
+  },
+  "reverb": {
+    "enabled": false,
+    "mix": 0.41,
+    "decay": 0.45
+  },
+  "filter": {
+    "enabled": false,
+    "mode": "lowpass",
+    "cutoff_hz": 12000
+  },
+  "sidechain": {
+    "enabled": false,
+    "amount": 0.35,
+    "release_ms": 140
+  }
+}

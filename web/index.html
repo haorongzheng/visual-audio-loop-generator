@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Audio Loop Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="kicker">Audio Loop Generator</p>
+          <h1>MIDI Loop 控制台</h1>
+        </div>
+        <div class="transport">
+          <a class="download" id="sample-admin-link" href="/admin/samples">音源/采样后台</a>
+          <a class="download" id="instrument-admin-link" href="/admin/instruments">乐器库</a>
+          <a class="download" id="sample-import-link" href="/admin/sample-import">采样导入</a>
+          <a class="download" id="foundation-pattern-admin-link" href="/admin/foundation-patterns">Foundation 模板库</a>
+          <a class="download" id="harmony-admin-link" href="/admin/harmony">和弦编辑</a>
+          <a class="download" id="foundation-performance-admin-link" href="/admin/foundation-performance-modes">Foundation 演奏模式</a>
+          <a class="download" id="guitar-performance-admin-link" href="/admin/guitar-performance-modes">吉他演奏模式</a>
+          <a class="download" id="string-performance-admin-link" href="/admin/string-performance">弦乐演奏模式</a>
+          <a class="download" id="bass-groove-admin-link" href="/admin/bass-groove-modes">Bass 律动模式</a>
+          <a class="download" id="drum-pattern-admin-link" href="/admin/drum-patterns">鼓点后台</a>
+          <button class="icon-button" id="randomize" title="随机组合" aria-label="随机组合">↯</button>
+          <button class="primary" id="generate">生成 MIDI</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <form class="controls" id="loop-form">
+          <div class="input-mode" role="group" aria-label="输入模式">
+            <button type="button" class="mode active" data-mode="controls">控件</button>
+            <button type="button" class="mode" data-mode="json">JSON</button>
+          </div>
+
+          <section class="json-entry hidden" id="json-entry">
+            <textarea id="json-input" spellcheck="false"></textarea>
+            <div class="json-actions">
+              <button type="button" id="load-sample">示例</button>
+              <button type="button" id="apply-json">套用到控件</button>
+            </div>
+          </section>
+
+          <section class="control-entry" id="control-entry">
+          <label class="field">
+            <span>Loop 名称</span>
+            <input id="loop-name" value="欢快 · 流动 · Electronic · Groove" />
+          </label>
+
+          <fieldset class="segmented emotion">
+            <legend>情绪 <output id="emotion-label">欢快</output></legend>
+            <div id="emotion-options"></div>
+          </fieldset>
+
+          <fieldset class="segmented energy">
+            <legend>能量 <output id="energy-label">流动</output></legend>
+            <div id="energy-options"></div>
+          </fieldset>
+
+          <fieldset class="segmented">
+            <legend>音色方向</legend>
+            <div id="sound-options"></div>
+          </fieldset>
+
+          <fieldset class="segmented rhythm">
+            <legend>节奏</legend>
+            <div id="rhythm-options"></div>
+          </fieldset>
+
+          <fieldset class="length">
+            <legend>长度</legend>
+            <label><input type="radio" name="bars" value="4" checked />4 小节</label>
+            <label><input type="radio" name="bars" value="8" />8 小节</label>
+          </fieldset>
+          <fieldset class="instrument-overrides">
+            <legend>音色默认乐器</legend>
+            <div class="two-col">
+              <label class="field"><span>Foundation</span><select id="foundation-instrument"><option value="">自动匹配</option></select></label>
+              <label class="field"><span>Bass</span><select id="bass-instrument"><option value="">自动匹配</option></select></label>
+            </div>
+            <button type="button" id="save-sound-instrument-default">保存为当前音色默认乐器</button>
+            <p class="hint" id="sound-instrument-default-status">为每个音色方向固定一组 Foundation / Bass 乐器；之后可继续保存当前标签的演奏细调。</p>
+          </fieldset>
+          <fieldset class="foundation-performance-select" id="foundation-template-select">
+            <legend>Foundation MIDI 模板</legend>
+            <div class="two-col">
+              <label class="field"><span>来源</span><select id="foundation-pattern-source"><option value="auto">自动匹配</option><option value="uploaded">已上传 MIDI 模板</option></select></label>
+              <label class="field" id="foundation-uploaded-wrap"><span>Foundation Pattern</span><select id="foundation-uploaded-pattern"><option value="">未选择</option></select></label>
+            </div>
+            <label class="switch"><input id="preserve-uploaded-performance" type="checkbox" checked /> 保留录制演奏</label>
+          </fieldset>
+          <fieldset class="foundation-performance-select" id="foundation-performance-select">
+            <legend>Foundation 演奏模式</legend>
+            <label class="field"><span>模式</span><select id="foundation-performance-mode"><option value="auto">自动</option><option value="block" selected>柱式和弦</option><option value="broken">分解和弦</option><option value="pulse">和弦脉冲</option><option value="rhythm_chop">节奏切分</option><option value="arpeggio">琶音</option><option value="octave_support">八度支撑</option><option value="wide_pad">宽音域铺底</option><option value="cluster">音簇和弦</option></select></label>
+            <p class="hint" id="foundation-performance-description">自动根据音色方向、能量与节奏选择，并固定贯穿整个 Loop。</p>
+            <label class="switch" id="override-uploaded-performance-wrap"><input id="override-uploaded-performance" type="checkbox" /> 使用所选模式重构已上传 MIDI</label>
+          </fieldset>
+          <fieldset class="foundation-performance-select hidden" id="guitar-performance-select">
+            <legend>吉他单音演奏</legend>
+            <div class="two-col">
+              <label class="field"><span>模式</span><select id="guitar-performance-mode"><option value="auto">自动</option></select></label>
+              <label class="field"><span>Variant</span><select id="guitar-pattern-variant"><option value="auto">自动</option></select></label>
+            </div>
+            <label class="field"><span>扫弦幅度 <output id="guitar-roll-amount-value">1.0</output></span><input id="guitar-roll-amount" type="range" min="0" max="1.5" step="0.1" value="1" /></label>
+            <p class="hint" id="guitar-performance-description">选择 Nylon Guitar 或 Electric Guitar 乐器后启用，整段 Loop 锁定为单一单音拨奏模式。</p>
+          </fieldset>
+          <fieldset class="foundation-performance-select hidden" id="string-performance-select">
+            <legend>弦乐演奏</legend>
+            <label class="field"><span>模式</span><select id="string-performance-mode"><option value="auto">自动</option></select></label>
+            <p class="hint" id="string-performance-description">选择弦乐分类的 Foundation 乐器后启用，使用长音铺陈或缓慢的声部推进。</p>
+          </fieldset>
+          <fieldset class="foundation-performance-select">
+            <legend>Bass 律动</legend>
+            <div class="two-col">
+              <label class="field"><span>来源</span><select id="bass-source"><option value="groove_modes">Groove Modes</option><option value="legacy_generator">旧生成器</option></select></label>
+              <label class="field"><span>Mode</span><select id="bass-groove-mode"><option value="auto">自动</option><option value="sustain_root" selected>长音根音</option><option value="root_fifth">根音五度</option><option value="pulse">脉冲低音</option><option value="groove_pickup">律动过门</option><option value="house_four_on_floor">House 四拍低音</option><option value="808_sync">808 切分低音</option><option value="ethnic_drone">民族持续低音</option><option value="middle_eastern_pulse">中东脉冲低音</option><option value="cinematic_sub_sustain">电影低频持续</option><option value="cinematic_emotional_movement">电影情绪推进低音</option></select></label>
+            </div>
+            <label class="field"><span>Pattern Variant</span><select id="bass-groove-variant"><option value="auto">自动</option></select></label>
+            <p class="hint" id="bass-groove-description">自动锁定一个 Bass Mode 与一个 Pattern Variant，Loop 内保持一致。</p>
+            <button type="button" id="save-foundation-settings">保存 Foundation / Bass 设置</button>
+            <p class="hint" id="foundation-settings-status">按当前情绪、能量、音色方向与节奏保存；切回相同标签会自动载入。</p>
+          </fieldset>
+          </section>
+        </form>
+
+        <section class="panel">
+          <div class="meter-row">
+            <div>
+              <span class="meter-label">BPM</span>
+              <strong id="bpm">98</strong>
+            </div>
+            <div>
+              <span class="meter-label">Key</span>
+              <strong id="key">C major</strong>
+            </div>
+            <div>
+              <span class="meter-label">Bars</span>
+              <strong id="bars">4</strong>
+            </div>
+          </div>
+
+          <section class="chord-preview" aria-live="polite">
+            <div class="chord-preview-head">
+              <span class="meter-label">当前和弦进行</span>
+              <span id="harmony-source">等待解析</span>
+            </div>
+            <div class="chord-progression" id="chord-progression">
+              <span class="chord-empty">点击上方标签查看和弦进行</span>
+            </div>
+          </section>
+
+          <div class="tracks" id="tracks"></div>
+          <div class="sample-overlays" id="sample-overlays"></div>
+          <section class="mixer" aria-label="调音台">
+            <div class="mixer-head"><div><span class="meter-label">Mixer</span><strong>调音台</strong></div><button type="button" id="save-mixer">保存调音</button></div>
+            <div class="mixer-channels" id="mixer-channels"></div>
+            <span class="mixer-status" id="mixer-status">载入中</span>
+          </section>
+          <section class="effects" aria-label="效果控制">
+            <div class="mixer-head"><div><span class="meter-label">Effects</span><strong>效果</strong></div><button type="button" id="save-effects">保存效果</button></div>
+            <div class="effects-channels" id="effects-channels"></div>
+            <span class="mixer-status" id="effects-status">载入中</span>
+          </section>
+
+          <div class="output-actions">
+            <div class="downloads">
+              <a class="download disabled" id="download-mp3" href="#" download>下载 MP3</a>
+              <a class="download disabled" id="download-wav" href="#" download>下载 WAV</a>
+              <a class="download disabled" id="download" href="#" download>下载 MIDI</a>
+            </div>
+            <span id="status">待生成</span>
+          </div>
+
+          <audio id="player" controls preload="none"></audio>
+
+          <div class="json-tabs">
+            <button type="button" class="tab active" data-tab="resolved">Resolver</button>
+            <button type="button" class="tab" data-tab="input">Input JSON</button>
+          </div>
+          <pre id="json-output">{}</pre>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+{
+  "patterns": [
+    {
+      "id": "foundation_pattern_19f6a484fd2_ee5e85",
+      "name": "深沉氛围极简",
+      "description": "",
+      "enabled": true,
+      "priority": 100,
+      "version": "1.0.0",
+      "loop_length_bars": 4,
+      "ppq": 480,
+      "time_signature": "4/4",
+      "source_file": {
+        "file_name": "foundation.mid",
+        "file_path": "data/foundation-patterns/files/foundation_pattern_19f6a484fd2_ee5e85_foundation.mid",
+        "track_index": 0,
+        "track_name": "Inst 1"
+      },
+      "source_harmony": {
+        "key_root": "C",
+        "mode": "major",
+        "chords": [
+          "Dm9",
+          "Dm9",
+          "Am9",
+          "Am9"
+        ]
+      },
+      "tag_rules": {
+        "emotion": [
+          "深沉"
+        ],
+        "energy": [
+          "静止"
+        ],
+        "sound_direction": [
+          "ambient"
+        ],
+        "rhythm": [
+          "sparse",
+          "flow",
+          "standard",
+          "groove",
+          "aggressive"
+        ]
+      },
+      "events": [
+        {
+          "start_tick": 0,
+          "duration_ticks": 3508,
+          "note": 52,
+          "velocity": 29,
+          "channel": 0
+        },
+        {
+          "start_tick": 0,
+          "duration_ticks": 3545,
+          "note": 53,
+          "velocity": 32,
+          "channel": 0
+        },
+        {
+          "start_tick": 10,
+          "duration_ticks": 3532,
+          "note": 57,
+          "velocity": 38,
+          "channel": 0
+        },
+        {
+          "start_tick": 30,
+          "duration_ticks": 3522,
+          "note": 60,
+          "velocity": 30,
+          "channel": 0
+        },
+        {
+          "start_tick": 60,
+          "duration_ticks": 3473,
+          "note": 41,
+          "velocity": 7,
+          "channel": 0
+        },
+        {
+          "start_tick": 71,
+          "duration_ticks": 3516,
+          "note": 45,
+          "velocity": 21,
+          "channel": 0
+        },
+        {
+          "start_tick": 80,
+          "duration_ticks": 3445,
+          "note": 48,
+          "velocity": 22,
+          "channel": 0
+        },
+        {
+          "start_tick": 97,
+          "duration_ticks": 3433,
+          "note": 64,
+          "velocity": 51,
+          "channel": 0
+        },
+        {
+          "start_tick": 3841,
+          "duration_ticks": 3694,
+          "note": 43,
+          "velocity": 34,
+          "channel": 0
+        },
+        {
+          "start_tick": 3861,
+          "duration_ticks": 3660,
+          "note": 50,
+          "velocity": 38,
+          "channel": 0
+        },
+        {
+          "start_tick": 3891,
+          "duration_ticks": 3637,
+          "note": 47,
+          "velocity": 33,
+          "channel": 0
+        },
+        {
+          "start_tick": 3894,
+          "duration_ticks": 3650,
+          "note": 55,
+          "velocity": 43,
+          "channel": 0
+        },
+        {
+          "start_tick": 3926,
+          "duration_ticks": 3634,
+          "note": 59,
+          "velocity": 48,
+          "channel": 0
+        },
+        {
+          "start_tick": 3957,
+          "duration_ticks": 3583,
+          "note": 62,
+          "velocity": 39,
+          "channel": 0
+        }
+      ],
+      "analysis": {
+        "track_index": 0,
+        "track_name": "Inst 1",
+        "note_count": 14,
+        "channels": [
+          0
+        ],
+        "first_note_tick": 0,
+        "last_note_tick": 7560,
+        "length_ticks": 7560,
+        "estimated_bars": 3.94,
+        "lowest_note": 41,
+        "highest_note": 64,
+        "average_velocity": 33.21,
+        "min_velocity": 7,
+        "max_velocity": 51,
+        "average_duration_ticks": 3559.43,
+        "polyphony_peak": 8,
+        "original_ppq": 480,
+        "normalized_ppq": 480,
+        "original": {
+          "track_index": 0,
+          "track_name": "Inst 1",
+          "note_count": 14,
+          "channels": [
+            0
+          ],
+          "first_note_tick": 1920,
+          "last_note_tick": 9480,
+          "length_ticks": 7560,
+          "estimated_bars": 3.94,
+          "lowest_note": 53,
+          "highest_note": 76,
+          "average_velocity": 33.21,
+          "min_velocity": 7,
+          "max_velocity": 51,
+          "average_duration_ticks": 3559.43,
+          "polyphony_peak": 8
+        },
+        "warnings": []
+      },
+      "created_at": "2026-07-16T09:35:51Z",
+      "updated_at": "2026-07-16T09:36:07Z",
+      "midi_note_octave_offset": -12,
+      "midi_note_convention": "logic_c3_is_midi_60"
+    }
+  ]
+}

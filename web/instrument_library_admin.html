@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>乐器库</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="app instrument-app">
+      <header class="topbar">
+        <div><p class="eyebrow">Instrument Library</p><h1>乐器库</h1></div>
+        <div class="actions"><a class="download" href="/">Loop 控制台</a><a class="download" href="/admin/sample-import">采样导入</a><button id="new-instrument">新建乐器</button><button class="primary" id="save-instrument">保存乐器</button></div>
+      </header>
+      <section class="instrument-layout">
+        <aside class="panel instrument-list-panel">
+          <div class="panel-head"><h2>乐器列表</h2><span id="library-status">就绪</span></div>
+          <input id="instrument-search" placeholder="搜索乐器" />
+          <div class="two-col compact"><select id="filter-role"><option value="">全部轨道</option><option value="foundation">Foundation</option><option value="bass">Bass</option><option value="lead">Lead</option><option value="texture">Texture</option></select><select id="filter-category"><option value="">全部分类</option></select></div>
+          <label class="switch"><input id="filter-enabled" type="checkbox" /> 仅显示已启用</label>
+          <div id="instrument-list" class="instrument-list"></div>
+        </aside>
+        <section class="instrument-main">
+          <section class="panel instrument-settings">
+            <div class="panel-head"><div><p class="eyebrow">Instrument Settings</p><h2>乐器设置</h2></div><div class="actions"><button id="duplicate-instrument">复制</button><button id="delete-instrument">删除</button></div></div>
+            <div class="two-col"><label class="field"><span>乐器名称</span><input id="instrument-name" placeholder="例如 Vintage Rhodes" /></label><label class="field"><span>版本</span><input id="instrument-version" value="1.0.0" /></label></div>
+            <label class="field"><span>描述</span><textarea id="instrument-description" rows="2"></textarea></label>
+            <div class="four-col"><label class="field"><span>轨道</span><select id="instrument-role"><option value="foundation">Foundation</option><option value="bass">Bass</option><option value="lead">Lead</option><option value="texture">Texture</option></select></label><label class="field"><span>分类</span><select id="instrument-category"></select></label><label class="field"><span>演奏引擎</span><select id="performance-engine"><option value="foundation">Standard Foundation</option><option value="guitar_single_note">Guitar Single Note</option></select></label><label class="field hidden" id="guitar-type-wrap"><span>吉他类型</span><select id="guitar-type"><option value="nylon">Nylon</option><option value="electric">Electric</option></select></label><label class="field"><span>优先级</span><input id="instrument-priority" type="number" min="0" max="999" value="100" /></label></div>
+            <label class="switch"><input id="instrument-enabled" type="checkbox" checked /> 启用此乐器</label>
+            <div class="tag-sections">
+              <div class="tag-block"><span>情绪</span><div class="choice-grid" id="tag-emotion"></div></div>
+              <div class="tag-block"><span>能量</span><div class="choice-grid" id="tag-energy"></div></div>
+              <div class="tag-block"><span>音色方向</span><div class="choice-grid" id="tag-sound_direction"></div></div>
+              <div class="tag-block"><span>节奏</span><div class="choice-grid" id="tag-rhythm"></div></div>
+            </div>
+            <div class="playback-grid">
+              <label class="field"><span>增益 dB</span><input id="playback-gain" type="number" min="-36" max="24" step="0.5" value="0" /></label><label class="field"><span>声像</span><input id="playback-pan" type="number" min="-1" max="1" step="0.1" value="0" /></label><label class="field"><span>起音 ms</span><input id="playback-attack" type="number" min="0" value="5" /></label><label class="field"><span>释放 ms</span><input id="playback-release" type="number" min="0" value="30" /></label><label class="field"><span>复音数</span><input id="playback-polyphony" type="number" min="1" max="64" value="32" /></label><label class="field"><span>力度曲线</span><select id="playback-curve"><option value="linear">线性</option><option value="soft">柔和</option><option value="hard">硬朗</option></select></label><label class="field"><span>移调（半音）</span><input id="playback-transpose" type="number" min="-24" max="24" value="0" /></label>
+            </div>
+          </section>
+          <section class="panel zone-panel">
+            <div class="panel-head"><div><p class="eyebrow">Sample Mapping</p><h2>采样音域映射</h2></div><div class="actions"><label class="upload-button small"><input id="zone-file" type="file" accept=".wav,audio/wav" /><span>上传 WAV</span></label><button id="auto-map">自动映射音域</button></div></div>
+            <p class="hint">文件名中的音名会自动作为根音，例如 Rhodes_C3.wav 会识别为 C3。上传后可直接设置最低音与最高音；音名和 MIDI 均可输入，例如 C3 或 48。</p>
+            <div class="zone-table-wrap"><table class="zone-table"><thead><tr><th>采样</th><th>根音</th><th>最低音</th><th>最高音</th><th>力度层</th><th>RR</th><th>增益</th><th>声像</th><th>启用</th><th>操作</th></tr></thead><tbody id="zone-table"></tbody></table></div>
+          </section>
+        </section>
+        <aside class="panel instrument-preview">
+          <div class="panel-head"><div><p class="eyebrow">Preview</p><h2>试听</h2></div></div>
+          <label class="field"><span>力度 <output id="preview-velocity-value">90</output></span><input id="preview-velocity" type="range" min="1" max="127" value="90" /></label>
+          <div class="preview-readout" id="preview-readout">选择一个乐器后点击琴键试听</div>
+          <div class="mini-keyboard" id="mini-keyboard"></div>
+          <div id="foundation-preview" class="preview-tools"><label class="field"><span>和弦试听</span><input id="chord-symbol" value="Cmaj9" /></label><button id="play-chord">播放和弦</button></div>
+          <div id="bass-preview" class="preview-tools hidden"><label class="field"><span>低音根音</span><input id="bass-root" value="C2" /></label><div class="two-col compact"><button data-bass-pattern="root">根音</button><button data-bass-pattern="fifth">根音 + 五度</button><button data-bass-pattern="octave">根音 + 八度</button><button data-bass-pattern="pulse">短促脉冲</button></div></div>
+        </aside>
+      </section>
+    </main>
+    <script src="instrument_library_admin.js"></script>
+  </body>
+</html>

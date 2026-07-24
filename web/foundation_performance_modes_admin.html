@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foundation 演奏模式</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="app">
+      <header class="topbar">
+        <div><p class="eyebrow">Foundation Performance Mode</p><h1>Foundation 演奏模式</h1></div>
+        <div class="actions"><a class="download" href="/">Loop 控制台</a><button id="reset" type="button">恢复默认</button><button class="primary" id="save" type="button">保存设置</button></div>
+      </header>
+      <section class="panel" style="padding:18px; margin-top:18px">
+        <div class="two-col">
+          <label class="field"><span>试听 BPM</span><input id="preview-bpm" type="number" min="50" max="180" value="96" /></label>
+          <label class="field"><span>试听能量</span><select id="preview-energy"><option>静止</option><option>高能</option><option selected>流动</option></select></label>
+        </div>
+        <p class="hint">试听固定使用 Cmaj9 · Am9 · Fmaj9 · Gsus13。每次模式试听均保持同一种演奏语言。</p>
+      </section>
+      <section class="foundation-pattern-library" id="mode-list" style="margin-top:18px"></section>
+      <p class="hint" id="status-line">正在加载模式</p>
+    </main>
+    <script src="foundation_performance_modes_admin.js"></script>
+  </body>
+</html>
