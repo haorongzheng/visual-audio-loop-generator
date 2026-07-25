@@ -38,6 +38,12 @@ class GuitarPerformanceTests(unittest.TestCase):
         self.assertTrue(any(item["play_mode"] == "roll_up" for item in oud_events))
         self.assertTrue(any(item["play_mode"] == "roll_down" for item in desert_events))
 
+    def test_ethnic_modes_keep_attacks_on_grid(self) -> None:
+        for mode_id in ("oud_style_picking", "desert_pulse"):
+            events, manifest = self.events("nylon", mode_id, f"{mode_id}_a")
+            self.assertTrue(all(item["timing"] == 0 for item in events))
+            self.assertEqual(manifest["style"], "middle_eastern")
+
     def test_guitar_engine_is_explicit(self) -> None:
         self.assertTrue(is_guitar_instrument({"performance_engine": "guitar_single_note", "guitar_type": "nylon"}))
         self.assertTrue(is_guitar_instrument({"performance_engine": "guitar_single_note", "guitar_type": "electric"}))

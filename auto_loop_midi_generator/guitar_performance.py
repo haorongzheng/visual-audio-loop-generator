@@ -69,9 +69,9 @@ def _mode(
         "velocity_amount": velocity_amount, "octave_range": [3, 5], "allowed_guitar_types": list(guitar_types),
         "allowed_sound_directions": list(sound or ("ambient", "acoustic", "organic", "vintage", "electronic", "ethnic", "cinematic")),
         "allowed_energy": list(energy), "allowed_rhythm": list(rhythm), "bar_4_strategies": list(bar4),
-        "priority": priority, "enabled": True, "version": 2, "category": category, "style": style,
+        "priority": priority, "enabled": True, "version": 3, "category": category, "style": style,
         "humanize_style": humanize_style, "roll_probability": max(0.0, min(1.0, roll_probability)),
-        "variants": [{"id": f"{mode_id}_a", "name": "Variant A", "grid": grid, "events": events, "priority": 10, "enabled": True, "version": 2}],
+        "variants": [{"id": f"{mode_id}_a", "name": "Variant A", "grid": grid, "events": events, "priority": 10, "enabled": True, "version": 3}],
     }
 
 
@@ -89,28 +89,30 @@ def default_guitar_performance_modes() -> dict[str, dict[str, Any]]:
         "sparse_open_strum": _mode("sparse_open_strum", "Sparse Open Strum", "留白开放扫弦", "在整拍直接起音的开放扫弦", [
             event(0, ["root", "fifth", "seventh", "octave_third"], "roll_up", 34, 5, .88), event(8, ["third", "fifth", "seventh"], "roll_down", 30, 4, .8),
         ], duration=.78, velocity=(54, 80), timing=0, velocity_amount=.14, rhythm=("sparse", "flow", "standard"), bar4=("end_on_root", "early_release", "remove_last_event"), priority=23),
-        "oud_style_picking": _mode("oud_style_picking", "Oud Style Picking", "乌德琴式拨弦", "低音 Drone 与不规则高音回应的中东式尼龙吉他拨弦", [
-            event(0, "root", "single", 0, 4, 1.1),
-            event(3, ["fifth", "octave_root"], "roll_up", 35, 3, .85),
-            event(6, "third", "single", 0, 2, .75),
-            event(8, ["root", "fifth", "seventh"], "roll_up", 45, 4, .95),
-            event(12, "octave_third", "single", 0, 2, .8),
-            event(14, "fifth", "single", 0, 2, .7),
-        ], grid="1/16", duration=.78, velocity=(58, 88), timing=.08, velocity_amount=.15,
+        "oud_style_picking": _mode("oud_style_picking", "Oud Style Picking", "乌德琴式拨弦", "低音 Drone、非对称回应与短滚奏组成的乌德琴式尼龙吉他拨弦", [
+            event(0, "root", "single", 0, 5, 1.14),
+            event(3, ["fifth", "octave_root"], "roll_up", 30, 2, .82),
+            event(6, "third", "single", 0, 2, .72),
+            event(8, ["root", "fifth"], "roll_down", 38, 4, 1.00),
+            event(10, "octave_root", "single", 0, 1, .68),
+            event(12, "root", "single", 0, 3, .92),
+            event(14, ["fifth", "octave_third"], "roll_up", 34, 2, .76),
+        ], grid="1/16", duration=.82, velocity=(56, 90), timing=.08, velocity_amount=.17,
         guitar_types=("nylon",), sound=("ethnic", "organic", "cinematic"), energy=("静止", "流动"),
         rhythm=("sparse", "flow", "standard", "groove"), bar4=("end_on_root", "early_release"), priority=90,
-        category="ethnic", style="middle_eastern", humanize_style="organic", roll_probability=.45),
-        "desert_pulse": _mode("desert_pulse", "Desert Pulse", "沙漠脉冲", "Root Drone 与高音回应组成的民族电影循环", [
+        category="ethnic", style="middle_eastern", humanize_style="organic", roll_probability=.58),
+        "desert_pulse": _mode("desert_pulse", "Desert Pulse", "沙漠脉冲", "Dum 式低音重拍、五度回应与短滚奏组成的民族电影循环", [
             event(0, ["root", "fifth"], "roll_up", 28, 3, 1.0),
-            event(4, "octave_root", "single", 0, 2, .8),
-            event(6, ["third", "fifth"], "stack", 0, 2, .75),
-            event(8, "root", "single", 0, 4, 1.05),
-            event(12, ["fifth", "seventh", "octave_third"], "roll_down", 40, 3, .85),
-            event(15, "fifth", "single", 0, 1, .7),
-        ], grid="1/16", duration=.72, velocity=(62, 96), timing=.06, velocity_amount=.18,
+            event(3, "fifth", "single", 0, 1, .66),
+            event(6, ["third", "fifth"], "roll_up", 30, 2, .78),
+            event(8, "root", "single", 0, 3, 1.08),
+            event(10, "octave_root", "single", 0, 2, .74),
+            event(12, ["fifth", "seventh", "octave_third"], "roll_down", 36, 3, .86),
+            event(15, "fifth", "single", 0, 1, .68),
+        ], grid="1/16", duration=.76, velocity=(60, 98), timing=.06, velocity_amount=.19,
         guitar_types=("nylon",), sound=("ethnic", "organic", "cinematic"), energy=("静止", "流动"),
         rhythm=("flow", "standard", "groove"), bar4=("end_on_root", "remove_last_event"), priority=88,
-        category="ethnic", style="middle_eastern", humanize_style="organic", roll_probability=.35),
+        category="ethnic", style="middle_eastern", humanize_style="organic", roll_probability=.52),
     }
     return modes
 
@@ -356,7 +358,7 @@ def guitar_events(
             base_duration = max(24, int(int(item.get("duration_steps", 1)) * 120 * float(mode["duration_ratio"]) * profile[1]))
             duration_limits = {mode_id: .12 for mode_id in MODE_IDS}
             base_duration = max(24, int(base_duration * (1 + rng.uniform(-duration_limits.get(mode["id"], .08), duration_limits.get(mode["id"], .08)))))
-            # Guitar attacks stay exactly on the selected grid; the short roll only spreads strings within a strum.
+            # Ethnic character comes from the phrase pattern and rolls, not delayed grid timing.
             event_timing = 0
             roll_ticks = int(round(roll_time * max(1, bpm) * 480 / 60_000))
             offsets = [0] if len(voiced) <= 1 else [int(round(roll_ticks * index / (len(voiced) - 1))) for index in range(len(voiced))]
